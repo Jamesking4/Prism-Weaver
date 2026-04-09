@@ -10,60 +10,61 @@ namespace PrismWeaver.Content;
 
 public class Player : GameObject
 {
+    private GraphicsDeviceManager graphics;
+    private List<Platform> platforms;
+    
     private Vector2 velocity;
     private int health = 10;
-    private PlayerAnimation playerAnimation;
+    private readonly PlayerAnimation playerAnimation;
     
-    private const float maxVelocityX = 4.0f;
-    private const float diffVelocityX = 0.1f;
-    private const float epsilon = 0.01f;
-    private Gravitation gravitation = new();
-    private const double jumpCooldown = 0.9;
+    private const float MaxVelocityX = 4.0f;
+    private const float DiffVelocityX = 0.1f;
+    private const float Epsilon = 0.01f;
+    private readonly Gravitation gravitation = new();
+    private const double JumpCooldown = 0.9;
     private double timer;
     private bool isCanJump = true;
     
     public bool IsGrounded { get; private set; }
-
-    // Конструктор – передаём размеры из анимации в базовый класс
+    
     public Player(ContentManager content, Vector2 startPosition)
         : base(startPosition, PlayerAnimation.RealFrameWidth, PlayerAnimation.RealFrameHeight)
     {
         timer = 0;
         velocity = Vector2.Zero;
         playerAnimation = new PlayerAnimation(content);
-        
-        // При необходимости настраиваем отдельный хитбокс для коллизий
-        // Например, уменьшаем его на 4 пикселя с каждой стороны:
-        // SetCollisionBox(new Vector2(4, 4), Width - 8, Height - 8);
     }
 
-    // Метод обновления – теперь использует Position и Rectangle
-    public void Update(GameTime gameTime, GraphicsDeviceManager graphics, List<Platform> platforms)
+    public void Initialize(GraphicsDeviceManager graphics, List<Platform> platforms)
     {
-        CorrectVelocity(graphics, platforms);
-        FindIsGrounded(graphics, platforms);
-        Move(platforms);
+        this.graphics = graphics;
+        this.platforms = platforms;
+    }
+    
+    public override void Update(GameTime gameTime)
+    {
+        CorrectVelocity();
+        FindIsGrounded();
+        Move();
         
-        // Ограничение позиции в окне (используем визуальный Rectangle)
         (Position, velocity) = Window.GetPositionAndVelocityInWindow(graphics, Rectangle, velocity);
         
         playerAnimation.Update(gameTime, velocity, IsGrounded);
         ChangeJumpCooldown(gameTime);
     }
     
-    public void Draw(SpriteBatch spriteBatch)
+    public override void Draw(SpriteBatch spriteBatch)
     {
         playerAnimation.Draw(spriteBatch, Position);
     }
     
-    private void Move(List<Platform> platforms)
+    private void Move()
     {
-        if (velocity.X > maxVelocityX)
-            velocity.X = maxVelocityX;
-        if (velocity.X < -maxVelocityX)
-            velocity.X = -maxVelocityX;
+        if (velocity.X > MaxVelocityX)
+            velocity.X = MaxVelocityX;
+        if (velocity.X < -MaxVelocityX)
+            velocity.X = -MaxVelocityX;
         
-        // Используем CollisionRectangle для коллизий (если не настроен отдельно, он равен Rectangle)
         foreach (var platform in platforms)
         {
             if (CollisionRectangle.Intersects(platform.CollisionRectangle))
@@ -84,7 +85,7 @@ public class Player : GameObject
         Position = new Vector2(Position.X + velocity.X, Position.Y + velocity.Y);
     }
 
-    public void MoveRight(List<Platform> platforms)
+    public void MoveRight()
     {
         var platformRects = platforms
             .Select(p => p.CollisionRectangle)
@@ -94,10 +95,10 @@ public class Player : GameObject
             velocity.X = 0;
             return;
         }
-        velocity.X += diffVelocityX;
+        velocity.X += DiffVelocityX;
     }
 
-    public void MoveLeft(List<Platform> platforms)
+    public void MoveLeft()
     {
         var platformRects = platforms
             .Select(p => p.CollisionRectangle)
@@ -107,16 +108,16 @@ public class Player : GameObject
             velocity.X = 0;
             return;
         }
-        velocity.X -= diffVelocityX;
+        velocity.X -= DiffVelocityX;
     }
 
-    public void Jump(List<Platform> platforms)
+    public void Jump()
     {
         if (!IsGrounded || !isCanJump)
             return;
         
-        int distToPlatformOver = 0;
-        int minDistToPlatformOver = int.MaxValue;
+        var distToPlatformOver = 0;
+        var minDistToPlatformOver = int.MaxValue;
         foreach (var platform in platforms)
         {
             distToPlatformOver = CollisionRectangle.GetDistToPlatformOver(platform.CollisionRectangle);
@@ -131,25 +132,25 @@ public class Player : GameObject
         isCanJump = false;
     }
 
-    public void MoveNone(List<Platform> platforms)
+    public void MoveNone()
     {
-        if (Math.Abs(velocity.X) < 2 * diffVelocityX)
+        if (Math.Abs(velocity.X) < 2 * DiffVelocityX)
         {
             velocity.X = 0;
         }
-        else if (velocity.X > epsilon)
+        else if (velocity.X > Epsilon)
         {
-            velocity.X -= diffVelocityX;
+            velocity.X -= DiffVelocityX;
             playerAnimation.playerDirection = PlayerDirection.Right;
         }
-        else if (velocity.X < -epsilon)
+        else if (velocity.X < -Epsilon)
         {
-            velocity.X += diffVelocityX;
+            velocity.X += DiffVelocityX;
             playerAnimation.playerDirection = PlayerDirection.Left;
         }
     }
 
-    private void CorrectVelocity(GraphicsDeviceManager graphics, List<Platform> platforms)
+    private void CorrectVelocity()
     {
         var platformRects = platforms
             .Select(p => p.CollisionRectangle)
@@ -161,7 +162,7 @@ public class Player : GameObject
         velocity = gravitation.AffectGravitation(graphics, velocity, CollisionRectangle, platformRects);
     }
 
-    private void FindIsGrounded(GraphicsDeviceManager graphics, List<Platform> platforms)
+    private void FindIsGrounded()
     {
         IsGrounded = gravitation.IsGrounded(graphics, CollisionRectangle,
             platforms.Select(p => p.CollisionRectangle).ToList());
@@ -175,7 +176,7 @@ public class Player : GameObject
     private void ChangeJumpCooldown(GameTime gameTime)
     {
         timer += gameTime.ElapsedGameTime.TotalSeconds;
-        if (timer >= jumpCooldown)
+        if (timer >= JumpCooldown)
         {
             timer = 0;
             isCanJump = true;

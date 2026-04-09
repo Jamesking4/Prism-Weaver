@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,8 +18,10 @@ public class Game1 : Game
     private Texture2D platformTexture;
     private Texture2D pixelTexture;
     private Song background_music;
+    
     private Player player;
-    private List<Platform> platforms;
+    private List<GameObject> gameObjects = [];
+    
     private int windowWidth;
     private int windowHeight;
 
@@ -37,11 +40,16 @@ public class Game1 : Game
         base.Initialize();
         windowWidth = graphics.GraphicsDevice.Viewport.Width;
         windowHeight = graphics.GraphicsDevice.Viewport.Height;
-        platforms = [];
+        
         for (var i = 0; i < 8; i++)
         {
-            platforms.Add(new Platform(new Vector2(100 * (i + 2), windowHeight - 120)));
+            var platform = new Platform(new Vector2(100 * (i + 2), windowHeight - 120), pixelTexture);
+            gameObjects.Add(platform);
         }
+        
+        player = new Player(Content, new Vector2(0, 800));
+        player.Initialize(graphics, GetPlatforms());
+        gameObjects.Add(player);
     }
 
     protected override void LoadContent()
@@ -52,10 +60,10 @@ public class Game1 : Game
         background_music = Content.Load<Song>("sounds/background_music");
         pixelTexture = new Texture2D(GraphicsDevice, 1, 1);
         pixelTexture.SetData([Color.White]);
+
         MediaPlayer.IsRepeating = true;
         MediaPlayer.Volume = 1f;
         MediaPlayer.Play(background_music);
-        player = new Player(Content, new Vector2(0, 800));
     }
 
     protected override void Update(GameTime gameTime)
@@ -67,7 +75,10 @@ public class Game1 : Game
             Exit();
         
         ControlPlayer(keyboard);
-        player.Update(gameTime, graphics, platforms);
+        
+        foreach (var obj in gameObjects)
+            obj.Update(gameTime);
+        
         base.Update(gameTime);
     }
 
@@ -76,13 +87,12 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         spriteBatch.Begin();
-        spriteBatch.Draw(background, new Rectangle(0, 0, graphics.GraphicsDevice.Viewport.Width, graphics.GraphicsDevice.Viewport.Height), Color.White);
-        player.Draw(spriteBatch);
-
-        foreach (var platform in platforms)
-        {
-            spriteBatch.Draw(pixelTexture ,platform.Rectangle, Color.White);
-        }
+        
+        spriteBatch.Draw(background, new Rectangle(0, 0, graphics.GraphicsDevice.Viewport.Width,
+            graphics.GraphicsDevice.Viewport.Height), Color.White);
+        
+        foreach (var obj in gameObjects)
+            obj.Draw(spriteBatch);
         
         spriteBatch.End();
         base.Draw(gameTime);
@@ -91,17 +101,25 @@ public class Game1 : Game
     private void ControlPlayer(KeyboardState keyboard)
     {
         if (keyboard.IsKeyDown(Keys.D))
-            player.MoveRight(platforms);
+            player.MoveRight();
         
         if (keyboard.IsKeyDown(Keys.A))
-            player.MoveLeft(platforms);
+            player.MoveLeft();
         
         if (keyboard.IsKeyDown(Keys.Space))
-            player.Jump(platforms);
+            player.Jump();
 
         if (!keyboard.IsKeyDown(Keys.A) && !keyboard.IsKeyDown(Keys.D))
         {
-            player.MoveNone(platforms);
+            player.MoveNone();
         }
+    }
+    
+    private List<Platform> GetPlatforms()
+    {
+        return gameObjects
+            .Where(obj => obj is Platform)
+            .Cast<Platform>()
+            .ToList();
     }
 }
