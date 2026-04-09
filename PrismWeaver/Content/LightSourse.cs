@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace PrismWeaver.Content;
@@ -7,20 +8,24 @@ public class LightSource : GameObject
 {
     private Direction direction;
     private bool isWork = true;
-    private readonly Texture2D texture;
+    private Texture2D texture;
     private Light light;
     private int lightWidth = 1000;
     private int lightHeight = 5;
     private Color color;
     
-    public LightSource(Vector2 startPosition, Texture2D texture, Direction direction, 
-        Color color, int width, int height, Texture2D textureTemp) : base(startPosition, width, height)
+    public LightSource(Vector2 startPosition, int width, int height) : base(startPosition, width, height)
+    {
+    }
+
+    public void Initialize(Texture2D texture, Color color, Direction direction, Texture2D textureTemp, List<GameObject> gameObjects)
     {
         this.texture = textureTemp;
         this.direction = direction;
         this.color = color;
         
-        light = new Light(GetStartLight(), lightWidth, lightHeight, color, isWork, direction, texture);
+        light = new Light(GetStartLight(), lightWidth, lightHeight);
+        light.Initialize(color, isWork, direction, texture, gameObjects);
     }
 
     public override void Update(GameTime gameTime)

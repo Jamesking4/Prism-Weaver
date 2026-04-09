@@ -57,18 +57,18 @@ public class Game1 : Game
             gameObjects.Add(platform);
         }
         
-        player = new Player(Content, new Vector2(50, 800));
-        player.Initialize(graphics, gameObjects);
-        gameObjects.Add(player);
-        
-        var lightSource = new LightSource(new Vector2(0, windowHeight - 50), pixelTexture2,
-            Direction.Right, Color.Red, 30, 30, pixelTexture);
+        var lightSource = new LightSource(new Vector2(0, windowHeight - 50),30, 30);
+        lightSource.Initialize(pixelTexture2, Color.Red,Direction.Right, pixelTexture, gameObjects);
         gameObjects.Add(lightSource);
         gameObjects.Add(lightSource.GetLight());
 
         MediaPlayer.IsRepeating = true;
         MediaPlayer.Volume = 1f;
         MediaPlayer.Play(background_music);
+        
+        player = new Player(Content, new Vector2(50, 800));
+        player.Initialize(graphics, gameObjects);
+        gameObjects.Add(player);
     }
 
     protected override void Update(GameTime gameTime)

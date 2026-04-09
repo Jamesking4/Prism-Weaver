@@ -7,7 +7,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1b13c6c-ec87-4061-baf0-4e36f9224824" name="Changes" comment="" />
+    <list default="true" id="e1b13c6c-ec87-4061-baf0-4e36f9224824" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PrismWeaver/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PrismWeaver/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/Content/Light.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/Content/Light.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/Content/LightSourse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/Content/LightSourse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/Game1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/Game1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.exe" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/ref/PrismWeaver.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/ref/PrismWeaver.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/refint/PrismWeaver.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/refint/PrismWeaver.dll" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,6 +44,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/Animation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/Direction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/Door.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/GameObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/Gates.cs" root0="FORCE_HIGHLIGHTING" />
@@ -48,6 +65,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/76f1c92c01a744a4a3c64ca7874d1f01d5e00/18/28b0544c/Game.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ba03229b8197450d925e741b560ee852e8e920/13/a145374a/Double.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -115,13 +133,14 @@
       <workItem from="1775106360156" duration="1985000" />
       <workItem from="1775205325109" duration="6213000" />
       <workItem from="1775705372479" duration="77000" />
-      <workItem from="1775714337920" duration="5776000" />
+      <workItem from="1775714337920" duration="16781000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
