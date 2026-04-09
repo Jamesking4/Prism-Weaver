@@ -1,0 +1,4 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/sounds/99_cavern_of_lost_souls.mp3","C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/bin/Windows/sounds/background_music.xnb","SongProcessor","SongContent",14425898,134,2,2037394
+"C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/textures/Countess_Vampire/Dead.png","C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/bin/Windows/textures/Countess_Vampire/Dead.xnb","TextureProcessor","Texture2DContent",24580,524373,0,0894169
+"C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/textures/Countess_Vampire/Idle.png","C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/bin/Windows/textures/Countess_Vampire/Idle.xnb","TextureProcessor","Texture2DContent",21749,327765,0,0072895

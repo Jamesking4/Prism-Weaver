@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/sounds/99_cavern_of_lost_souls.mp3</File>
+    <File>C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/textures/background.png</File>
+    <File>C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/textures/Countess_Vampire/Dead.png</File>
+    <File>C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/textures/Countess_Vampire/Idle.png</File>
+    <File>C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/textures/Countess_Vampire/Jump.png</File>
+    <File>C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/textures/Countess_Vampire/Run.png</File>
+    <File>C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/textures/Countess_Vampire/Walk.png</File>
+    <File>C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/textures/platform.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File>sounds/background_music.mp3</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
