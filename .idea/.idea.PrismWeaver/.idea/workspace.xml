@@ -8,16 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1b13c6c-ec87-4061-baf0-4e36f9224824" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PrismWeaver/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PrismWeaver/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/Content/Light.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/Content/Light.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/Content/LightSourse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/Content/LightSourse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/Game1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/Game1.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.exe" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/apphost.exe" afterDir="false" />
@@ -133,7 +128,7 @@
       <workItem from="1775106360156" duration="1985000" />
       <workItem from="1775205325109" duration="6213000" />
       <workItem from="1775705372479" duration="77000" />
-      <workItem from="1775714337920" duration="16781000" />
+      <workItem from="1775714337920" duration="17167000" />
     </task>
     <servers />
   </component>

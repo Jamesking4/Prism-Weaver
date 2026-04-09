@@ -73,12 +73,18 @@ public class Player : GameObject
             if (!CollisionRectangle.Intersects(gameObject.CollisionRectangle)) 
                 continue;
             
-            if (CollisionRectangle.Bottom < gameObject.CollisionRectangle.Top + gameObject.CollisionRectangle.Height / 2)
+            if ((CollisionRectangle.Bottom <
+                 gameObject.CollisionRectangle.Top + gameObject.CollisionRectangle.Height / 2)
+                && !(CollisionRectangle.IsPlatformLeft(gameObject.CollisionRectangle) ||
+                    CollisionRectangle.IsPlatformRight(gameObject.CollisionRectangle)))
             {
                 Position = new Vector2(Position.X, gameObject.CollisionRectangle.Top - Height);
                 velocity.Y = 0;
             }
-            else if (CollisionRectangle.Top > gameObject.CollisionRectangle.Bottom - gameObject.CollisionRectangle.Height / 2)
+            else if ((CollisionRectangle.Top >
+                      gameObject.CollisionRectangle.Bottom - gameObject.CollisionRectangle.Height / 2)
+                     && !(CollisionRectangle.IsPlatformLeft(gameObject.CollisionRectangle) ||
+                         CollisionRectangle.IsPlatformRight(gameObject.CollisionRectangle)))
             {
                 Position = new Vector2(Position.X, gameObject.CollisionRectangle.Bottom);
                 velocity.Y = 0;
@@ -100,29 +106,29 @@ public class Player : GameObject
 
     public void MoveRight()
     {
-        var platformRects = gameObjects
-            .Where(obj => obj is not Player && obj is not Light)
-            .Select(p => p.CollisionRectangle)
-            .ToList();
-        // if (platformRects.Any(rect => CollisionRectangle.IsPlatformLeft(rect) || CollisionRectangle.IsPlatformRight(rect)))
-        // {
-        //     velocity.X = 0;
-        //     return;
-        // }
+        // var platformRects = gameObjects
+        //     .Where(obj => obj is not Player && obj is not Light)
+        //     .Select(p => p.CollisionRectangle)
+        //     .ToList();
+        // // if (platformRects.Any(rect => CollisionRectangle.IsPlatformLeft(rect) || CollisionRectangle.IsPlatformRight(rect)))
+        // // {
+        // //     velocity.X = 0;
+        // //     return;
+        // // }
         velocity.X += DiffVelocityX;
     }
 
     public void MoveLeft()
     {
-        var platformRects = gameObjects
-            .Where(obj => obj is not Player && obj is not Light)
-            .Select(p => p.CollisionRectangle)
-            .ToList();
-        // if (platformRects.Any(rect => CollisionRectangle.IsPlatformLeft(rect) || CollisionRectangle.IsPlatformRight(rect)))
-        // {
-        //     velocity.X = 0;
-        //     return;
-        // }
+        // var platformRects = gameObjects
+        //     .Where(obj => obj is not Player && obj is not Light)
+        //     .Select(p => p.CollisionRectangle)
+        //     .ToList();
+        // // if (platformRects.Any(rect => CollisionRectangle.IsPlatformLeft(rect) || CollisionRectangle.IsPlatformRight(rect)))
+        // // {
+        // //     velocity.X = 0;
+        // //     return;
+        // // }
         velocity.X -= DiffVelocityX;
     }
 
