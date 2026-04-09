@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using PrismWeaver.Content;
-using Vector2 = System.Numerics.Vector2;
 
 namespace PrismWeaver;
 
@@ -38,28 +37,34 @@ public class Game1 : Game
     protected override void Initialize()
     {
         base.Initialize();
-        windowWidth = graphics.GraphicsDevice.Viewport.Width;
-        windowHeight = graphics.GraphicsDevice.Viewport.Height;
-        
-        for (var i = 0; i < 8; i++)
-        {
-            var platform = new Platform(new Vector2(100 * (i + 2), windowHeight - 120), pixelTexture);
-            gameObjects.Add(platform);
-        }
-        
-        player = new Player(Content, new Vector2(0, 800));
-        player.Initialize(graphics, GetPlatforms());
-        gameObjects.Add(player);
     }
 
     protected override void LoadContent()
     {
+        windowWidth = graphics.GraphicsDevice.Viewport.Width;
+        windowHeight = graphics.GraphicsDevice.Viewport.Height;
         spriteBatch = new SpriteBatch(GraphicsDevice);
         background = Content.Load<Texture2D>("textures/background");
         platformTexture = Content.Load<Texture2D>("textures/platform");
         background_music = Content.Load<Song>("sounds/background_music");
         pixelTexture = new Texture2D(GraphicsDevice, 1, 1);
+        var pixelTexture2 = new Texture2D(GraphicsDevice, 1, 1);
         pixelTexture.SetData([Color.White]);
+        
+        for (var i = 0; i < 8; i++)
+        {
+            var platform = new Platform(new Vector2(100 * (i + 2), windowHeight - 120), platformTexture);
+            gameObjects.Add(platform);
+        }
+        
+        player = new Player(Content, new Vector2(50, 800));
+        player.Initialize(graphics, gameObjects);
+        gameObjects.Add(player);
+        
+        var lightSource = new LightSource(new Vector2(0, windowHeight - 50), pixelTexture2,
+            Direction.Right, Color.Red, 30, 30, pixelTexture);
+        gameObjects.Add(lightSource);
+        gameObjects.Add(lightSource.GetLight());
 
         MediaPlayer.IsRepeating = true;
         MediaPlayer.Volume = 1f;
@@ -92,7 +97,9 @@ public class Game1 : Game
             graphics.GraphicsDevice.Viewport.Height), Color.White);
         
         foreach (var obj in gameObjects)
+        {
             obj.Draw(spriteBatch);
+        }
         
         spriteBatch.End();
         base.Draw(gameTime);
@@ -113,13 +120,5 @@ public class Game1 : Game
         {
             player.MoveNone();
         }
-    }
-    
-    private List<Platform> GetPlatforms()
-    {
-        return gameObjects
-            .Where(obj => obj is Platform)
-            .Cast<Platform>()
-            .ToList();
     }
 }
