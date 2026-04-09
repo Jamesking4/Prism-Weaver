@@ -6,7 +6,7 @@ namespace PrismWeaver.Content;
 
 public static class Window
 {
-    public static (Vector2, Vector2) GetPositionAndVelocityInWindow(GraphicsDeviceManager graphics, Rectangle rectangle, Vector2 velocity)
+    public static (Vector2, Vector2) GetPositionAndVelocityInWindow(GraphicsDeviceManager graphics, Rectangle rectangle, Microsoft.Xna.Framework.Vector2 velocity)
     {
         var position = new Vector2(rectangle.X, rectangle.Y);
         var newVelocity = new Vector2(velocity.X, velocity.Y);;

@@ -81,7 +81,7 @@ public class Game1 : Game
 
         foreach (var platform in platforms)
         {
-            spriteBatch.Draw(pixelTexture ,platform.drawRectangle, Color.White);
+            spriteBatch.Draw(pixelTexture ,platform.Rectangle, Color.White);
         }
         
         spriteBatch.End();

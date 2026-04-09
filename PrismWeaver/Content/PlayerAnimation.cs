@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using PrismWeaver.Content.textures;
-using Vector2 = System.Numerics.Vector2;
 
 namespace PrismWeaver.Content;
 

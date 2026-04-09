@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using Vector2 = System.Numerics.Vector2;
 
 namespace PrismWeaver.Content;
 

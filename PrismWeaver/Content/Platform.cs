@@ -1,19 +1,13 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace PrismWeaver.Content;
 
-public class Platform
+public class Platform : GameObject
 {
-    public Vector2 position { get; }
-    public int width { get; } = 100;
-    public int height { get; } = 20;
-    public Rectangle drawRectangle { get; }
-
-    public Platform(Vector2 position)
+    public Platform(Vector2 startPosition, int width = 100, int height = 20)
+        : base(startPosition, width, height)
     {
-        this.position = position;
-        drawRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
+        
     }
 }
