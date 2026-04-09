@@ -10,14 +10,12 @@ public abstract class GameObject
     public int Width { get; set; }
     public int Height { get; set; }
 
-    public Rectangle Rectangle => new Rectangle(
-        (int)Position.X, (int)Position.Y, Width, Height
-    );
+    public Rectangle Rectangle => new((int)Position.X, (int)Position.Y, Width, Height);
     
     protected Vector2 collisionOffset = Vector2.Zero;
     protected Point collisionSize;
 
-    public Rectangle CollisionRectangle => new Rectangle(
+    public Rectangle CollisionRectangle => new(
         (int)(Position.X + collisionOffset.X),
         (int)(Position.Y + collisionOffset.Y),
         collisionSize.X,
@@ -31,27 +29,6 @@ public abstract class GameObject
         Height = height;
         
         collisionSize = new Point(width, height);
-    }
-
-    protected void SetCollisionBox(Vector2 offset, int width, int height)
-    {
-        collisionOffset = offset;
-        collisionSize = new Point(width, height);
-    }
-
-    protected void SetCollisionOffset(Vector2 offset)
-    {
-        collisionOffset = offset;
-    }
-
-    protected void SetCollisionSize(int width, int height)
-    {
-        collisionSize = new Point(width, height);
-    }
-
-    public void SetPosition(Vector2 position)
-    {
-        Position = position;
     }
     
     public virtual void Update(GameTime gameTime)
