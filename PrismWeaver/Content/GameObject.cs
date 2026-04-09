@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace PrismWeaver.Content;
 
@@ -51,5 +52,15 @@ public abstract class GameObject
     public void SetPosition(Vector2 position)
     {
         Position = position;
+    }
+    
+    public virtual void Update(GameTime gameTime)
+    {
+        // Базовая реализация пуста – переопределяется в наследниках
+    }
+    
+    public virtual void Draw(SpriteBatch spriteBatch)
+    {
+        // Базовая реализация пуста – переопределяется в наследниках
     }
 }
