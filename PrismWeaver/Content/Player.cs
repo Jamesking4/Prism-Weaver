@@ -11,7 +11,7 @@ namespace PrismWeaver.Content;
 public class Player : GameObject
 {
     private GraphicsDeviceManager graphics;
-    private List<Platform> platforms;
+    private List<GameObject> gameObjects;
     
     private Vector2 velocity;
     private int health = 10;
@@ -35,10 +35,10 @@ public class Player : GameObject
         playerAnimation = new PlayerAnimation(content);
     }
 
-    public void Initialize(GraphicsDeviceManager graphics, List<Platform> platforms)
+    public void Initialize(GraphicsDeviceManager graphics, List<GameObject> gameObjects)
     {
         this.graphics = graphics;
-        this.platforms = platforms;
+        this.gameObjects = gameObjects;
     }
     
     public override void Update(GameTime gameTime)
@@ -65,20 +65,33 @@ public class Player : GameObject
         if (velocity.X < -MaxVelocityX)
             velocity.X = -MaxVelocityX;
         
-        foreach (var platform in platforms)
+        foreach (var gameObject in gameObjects)
         {
-            if (CollisionRectangle.Intersects(platform.CollisionRectangle))
+            if (gameObject is Player or Light)
+                continue;
+            
+            if (!CollisionRectangle.Intersects(gameObject.CollisionRectangle)) 
+                continue;
+            
+            if (CollisionRectangle.Bottom < gameObject.CollisionRectangle.Top + gameObject.CollisionRectangle.Height / 2)
             {
-                if (CollisionRectangle.Bottom < platform.CollisionRectangle.Top + platform.CollisionRectangle.Height / 2)
-                {
-                    Position = new Vector2(Position.X, platform.CollisionRectangle.Top - Height);
-                    velocity.Y = 0;
-                }
-                else if (CollisionRectangle.Top > platform.CollisionRectangle.Bottom - platform.CollisionRectangle.Height / 2)
-                {
-                    Position = new Vector2(Position.X, platform.CollisionRectangle.Bottom);
-                    velocity.Y = 0;
-                }
+                Position = new Vector2(Position.X, gameObject.CollisionRectangle.Top - Height);
+                velocity.Y = 0;
+            }
+            else if (CollisionRectangle.Top > gameObject.CollisionRectangle.Bottom - gameObject.CollisionRectangle.Height / 2)
+            {
+                Position = new Vector2(Position.X, gameObject.CollisionRectangle.Bottom);
+                velocity.Y = 0;
+            }
+            else if (CollisionRectangle.Right < gameObject.CollisionRectangle.Right - gameObject.CollisionRectangle.Width / 2)
+            {
+                Position = new Vector2(gameObject.CollisionRectangle.Left - CollisionRectangle.Width, Position.Y);
+                velocity.X = 0;
+            }
+            else if (CollisionRectangle.Left > gameObject.CollisionRectangle.Right - gameObject.CollisionRectangle.Width / 2)
+            {
+                Position = new Vector2(gameObject.CollisionRectangle.Right, Position.Y);
+                velocity.X = 0;
             }
         }
         
@@ -87,27 +100,29 @@ public class Player : GameObject
 
     public void MoveRight()
     {
-        var platformRects = platforms
+        var platformRects = gameObjects
+            .Where(obj => obj is not Player && obj is not Light)
             .Select(p => p.CollisionRectangle)
             .ToList();
-        if (platformRects.Any(rect => CollisionRectangle.IsPlatformLeft(rect) || CollisionRectangle.IsPlatformRight(rect)))
-        {
-            velocity.X = 0;
-            return;
-        }
+        // if (platformRects.Any(rect => CollisionRectangle.IsPlatformLeft(rect) || CollisionRectangle.IsPlatformRight(rect)))
+        // {
+        //     velocity.X = 0;
+        //     return;
+        // }
         velocity.X += DiffVelocityX;
     }
 
     public void MoveLeft()
     {
-        var platformRects = platforms
+        var platformRects = gameObjects
+            .Where(obj => obj is not Player && obj is not Light)
             .Select(p => p.CollisionRectangle)
             .ToList();
-        if (platformRects.Any(rect => CollisionRectangle.IsPlatformLeft(rect) || CollisionRectangle.IsPlatformRight(rect)))
-        {
-            velocity.X = 0;
-            return;
-        }
+        // if (platformRects.Any(rect => CollisionRectangle.IsPlatformLeft(rect) || CollisionRectangle.IsPlatformRight(rect)))
+        // {
+        //     velocity.X = 0;
+        //     return;
+        // }
         velocity.X -= DiffVelocityX;
     }
 
@@ -118,7 +133,7 @@ public class Player : GameObject
         
         var distToPlatformOver = 0;
         var minDistToPlatformOver = int.MaxValue;
-        foreach (var platform in platforms)
+        foreach (var platform in gameObjects)
         {
             distToPlatformOver = CollisionRectangle.GetDistToPlatformOver(platform.CollisionRectangle);
             if (distToPlatformOver != -1)
@@ -152,7 +167,8 @@ public class Player : GameObject
 
     private void CorrectVelocity()
     {
-        var platformRects = platforms
+        var platformRects = gameObjects
+            .Where(obj => obj is not Player && obj is not Light)
             .Select(p => p.CollisionRectangle)
             .ToList();
         if (platformRects.Any(rect => CollisionRectangle.IsPlatformUp(rect)))
@@ -165,7 +181,9 @@ public class Player : GameObject
     private void FindIsGrounded()
     {
         IsGrounded = gravitation.IsGrounded(graphics, CollisionRectangle,
-            platforms.Select(p => p.CollisionRectangle).ToList());
+            gameObjects
+                .Where(obj => obj is not Player && obj is not Light)
+                .Select(p => p.CollisionRectangle).ToList());
     }
     
     private float GetJumpVelocity(float height)
