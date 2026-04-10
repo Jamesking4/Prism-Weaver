@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -27,69 +28,71 @@ public abstract class DynamicObject : GameObject
 
     public void BaseMove()
     {
-        Move();
-        ChangeVelocityIfKnockUp();
         AffordGravity();
         (Position, Velocity) = Window.GetPositionAndVelocityInWindow(graphics, CollisionRectangle, Velocity);
+        Move();
     }
 
     private void Move()
     {
-        if (Velocity.X > MaxVelocityX)
-            Velocity.X = MaxVelocityX;
-        if (Velocity.X < -MaxVelocityX)
-            Velocity.X = -MaxVelocityX;
+        Velocity.X = Math.Clamp(Velocity.X, -MaxVelocityX, MaxVelocityX);
+
+        var collisions = GetRectangleWithCollision();
         
-        Position = new Vector2(Position.X + Velocity.X, Position.Y + Velocity.Y);
-
-        var rectanglesWithCollision = GetRectangleWithCollision();
-
-        foreach (var rec in rectanglesWithCollision)
+        Position = new Vector2(Position.X + Velocity.X, Position.Y);
+        foreach (var rect in collisions)
         {
-            if (!CollisionRectangle.Intersects(rec))
+            if (!CollisionRectangle.Intersects(rect))
                 continue;
-            
-            var otherObj = gameObjects.FirstOrDefault(obj => obj.CollisionRectangle == rec);
+
+            var otherObj = gameObjects.FirstOrDefault(obj => obj.CollisionRectangle == rect);
             var otherIsPushable = otherObj?.IsPushable ?? false;
             var thisIsPlayer = this is Player;
+
+            var intersection = Rectangle.Intersect(CollisionRectangle, rect);
             
-            if ((CollisionRectangle.Bottom < rec.Top + rec.Height / 2)
-                && !(CollisionRectangle.IsRectangleLeft(rec) || CollisionRectangle.IsRectangleRight(rec)))
+            if (intersection.Width < intersection.Height)
             {
-                Position = new Vector2(Position.X, rec.Top - collisionSize.Y);
-                Velocity.Y = 0;
-            }
-            else if ((CollisionRectangle.Top > rec.Bottom - rec.Height / 2)
-                     && !(CollisionRectangle.IsRectangleLeft(rec) || CollisionRectangle.IsRectangleRight(rec)))
-            {
-                Position = new Vector2(Position.X, rec.Bottom);
-                Velocity.Y = 0;
-            }
-            else if (CollisionRectangle.Right < rec.Right - rec.Width / 2)
-            {
-                if (thisIsPlayer && otherIsPushable)
-                    continue;
-
-                Position = new Vector2(rec.Left - collisionSize.X, Position.Y);
-                Velocity.X = 0;
-            }
-            else if (CollisionRectangle.Left > rec.Right - rec.Width / 2)
-            {
-                if (thisIsPlayer && otherIsPushable)
-                    continue;
-
-                Position = new Vector2(rec.Right, Position.Y);
-                Velocity.X = 0;
+                if (CollisionRectangle.Center.X < rect.Center.X)
+                {
+                    if (!(thisIsPlayer && otherIsPushable))
+                    {
+                        Position = new Vector2(rect.Left - collisionSize.X, Position.Y);
+                        Velocity.X = 0;
+                    }
+                }
+                else
+                {
+                    if (!(thisIsPlayer && otherIsPushable))
+                    {
+                        Position = new Vector2(rect.Right, Position.Y);
+                        Velocity.X = 0;
+                    }
+                }
             }
         }
-    }
-
-    private void ChangeVelocityIfKnockUp()
-    {
-        var rectangles = GetRectangleWithCollision();
-        if (rectangles.Any(rect => CollisionRectangle.IsRectangleUp(rect)))
+        
+        Position = new Vector2(Position.X, Position.Y + Velocity.Y);
+        foreach (var rect in collisions)
         {
-            Velocity.Y = 1f;
+            if (!CollisionRectangle.Intersects(rect))
+                continue;
+
+            var intersection = Rectangle.Intersect(CollisionRectangle, rect);
+            
+            if (intersection.Height < intersection.Width)
+            {
+                if (CollisionRectangle.Center.Y < rect.Center.Y)
+                {
+                    Position = new Vector2(Position.X, rect.Top - collisionSize.Y);
+                    Velocity.Y = 0;
+                }
+                else
+                {
+                    Position = new Vector2(Position.X, rect.Bottom);
+                    Velocity.Y = 0;
+                }
+            }
         }
     }
 

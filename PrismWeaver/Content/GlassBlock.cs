@@ -10,9 +10,13 @@ public class GlassBlock : DynamicObject
 {
     private Color color;
     private Texture2D texture;
+    
+    private const float PushForce = 1f;
+    private const float Friction = 0.8f;
+    private const float StopThreshold = 0.05f;
 
     public GlassBlock(GraphicsDeviceManager graphics, Vector2 startPosition, int width, int height, 
-        List<GameObject> gameObjects, float maxVelocityX = 2f) 
+        List<GameObject> gameObjects, float maxVelocityX = 3f) 
         : base(graphics, startPosition, width, height, gameObjects, maxVelocityX)
     {
         IsPushable = true;
@@ -26,7 +30,8 @@ public class GlassBlock : DynamicObject
 
     public override void Update(GameTime gameTime)
     {
-        ApplyPlayerPush();
+        ApplyPlayerForce();
+        ApplyFriction();
         BaseMove();
     }
 
@@ -35,17 +40,29 @@ public class GlassBlock : DynamicObject
         spriteBatch.Draw(texture, DrawRectangle, color);
     }
 
-    private void ApplyPlayerPush()
+    private void ApplyPlayerForce()
     {
         var player = gameObjects.OfType<Player>().FirstOrDefault();
-        if (player == null)
-            return;
+        if (player == null) return;
 
         if (CollisionRectangle.IsRectangleRight(player.CollisionRectangle))
-            Velocity.X -= 0.15f;
+            Velocity.X -= PushForce;
         else if (CollisionRectangle.IsRectangleLeft(player.CollisionRectangle))
-            Velocity.X += 0.15f;
-        else
-            Velocity.X *= 0.8f;
+            Velocity.X += PushForce;
+    }
+    
+    private void ApplyFriction()
+    {
+        var player = gameObjects.OfType<Player>().FirstOrDefault();
+        var isPlayerPushing = player != null && 
+            (CollisionRectangle.IsRectangleRight(player.CollisionRectangle) ||
+             CollisionRectangle.IsRectangleLeft(player.CollisionRectangle));
+
+        if (!isPlayerPushing)
+        {
+            Velocity.X *= Friction;
+            if (Math.Abs(Velocity.X) < StopThreshold)
+                Velocity.X = 0;
+        }
     }
 }

@@ -9,6 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e1b13c6c-ec87-4061-baf0-4e36f9224824" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PrismWeaver/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PrismWeaver/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/Content/DynamicObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/Content/DynamicObject.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/Content/GlassBlock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/Content/GlassBlock.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.exe" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.exe" afterDir="false" />
@@ -138,7 +139,7 @@
       <workItem from="1775205325109" duration="6213000" />
       <workItem from="1775705372479" duration="77000" />
       <workItem from="1775714337920" duration="20072000" />
-      <workItem from="1775805893463" duration="7354000" />
+      <workItem from="1775805893463" duration="9122000" />
     </task>
     <servers />
   </component>
