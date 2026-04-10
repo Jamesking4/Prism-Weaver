@@ -49,7 +49,9 @@ public class Game1 : Game
         background_music = Content.Load<Song>("sounds/background_music");
         pixelTexture = new Texture2D(GraphicsDevice, 1, 1);
         var pixelTexture2 = new Texture2D(GraphicsDevice, 1, 1);
+        var pixelTexture3 = new Texture2D(GraphicsDevice, 1, 1);
         pixelTexture.SetData([Color.White]);
+        pixelTexture3.SetData([Color.White]);
         
         for (var i = 0; i < 8; i++)
         {
@@ -58,16 +60,21 @@ public class Game1 : Game
         }
         
         var lightSource = new LightSource(new Vector2(0, windowHeight - 50),30, 30);
-        lightSource.Initialize(pixelTexture2, Color.Red,Direction.Right, pixelTexture, gameObjects);
+        lightSource.Initialize(graphics, pixelTexture2, Color.Red, Direction.Right, pixelTexture, gameObjects);
         gameObjects.Add(lightSource);
         gameObjects.Add(lightSource.GetLight());
+
+        var glassBlock = new GlassBlock(graphics, new Vector2(400, windowHeight - 180), 
+            40, 40, gameObjects, 2f);
+        glassBlock.Initialize(Color.White, pixelTexture3);
+        gameObjects.Add(glassBlock);
 
         MediaPlayer.IsRepeating = true;
         MediaPlayer.Volume = 1f;
         MediaPlayer.Play(background_music);
         
-        player = new Player(Content, new Vector2(50, 800));
-        player.Initialize(graphics, gameObjects);
+        player = new Player(graphics, Content, new Vector2(50, 800), PlayerAnimation.FrameWidth, PlayerAnimation.FrameHeight,
+            gameObjects);
         gameObjects.Add(player);
     }
 

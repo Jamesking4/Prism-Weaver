@@ -4,11 +4,11 @@ using Microsoft.Xna.Framework;
 
 namespace PrismWeaver.Content;
 
-public class Gravitation
+public static class Gravitation
 {
     private const float GravitationalConstant = 0.2f;
     
-    public Vector2 AffectGravitation(GraphicsDeviceManager graphics, Vector2 velocity, Rectangle rectangle, List<Rectangle> rectangles)
+    public static Vector2 AffectGravitation(GraphicsDeviceManager graphics, Vector2 velocity, Rectangle rectangle, List<Rectangle> rectangles)
     {
         if (!IsGrounded(graphics, rectangle, rectangles))
         {
@@ -18,11 +18,11 @@ public class Gravitation
         return velocity;
     }
     
-    public bool IsGrounded(GraphicsDeviceManager graphics, Rectangle rectangle, List<Rectangle> rectangles)
+    public static bool IsGrounded(GraphicsDeviceManager graphics, Rectangle rectangle, List<Rectangle> rectangles)
     {
         return rectangle.Bottom >= graphics.GraphicsDevice.Viewport.Height 
                || rectangles.Any(checkRectangle => rectangle.IsPlatformDown(checkRectangle));
     }
 
-    public float GetGravitationConst() => GravitationalConstant;
+    public static float GetGravitationConst() => GravitationalConstant;
 }

@@ -5,39 +5,46 @@ namespace PrismWeaver.Content;
 
 public abstract class GameObject
 {
-    public Vector2 Position { get; set; }
-    
-    public int Width { get; set; }
-    public int Height { get; set; }
+    protected Vector2 Position { get; set; }
 
-    public Rectangle Rectangle => new((int)Position.X, (int)Position.Y, Width, Height);
+    protected int Width { get; set; }
+    protected int Height { get; set; }
+
+    public bool IsColliding { get; set; }
     
+    public Rectangle DrawRectangle => new(
+        (int)(Position.X - collisionOffset.X),
+        (int)(Position.Y - collisionOffset.Y),
+        Width,
+        Height
+    );
+
     protected Vector2 collisionOffset = Vector2.Zero;
     protected Point collisionSize;
-
+    
     public Rectangle CollisionRectangle => new(
-        (int)(Position.X + collisionOffset.X),
-        (int)(Position.Y + collisionOffset.Y),
+        (int)Position.X,
+        (int)Position.Y,
         collisionSize.X,
         collisionSize.Y
     );
 
-    protected GameObject(Vector2 startPosition, int width, int height)
+    protected GameObject(Vector2 startPosition, int width, int height, bool isColliding = true)
     {
         Position = startPosition;
         Width = width;
         Height = height;
-        
+        IsColliding = isColliding;
+
         collisionSize = new Point(width, height);
     }
-    
-    public virtual void Update(GameTime gameTime)
+
+    protected void SetCollision(Vector2 collisionOffset, Point collisionSize)
     {
-        // Базовая реализация пуста – переопределяется в наследниках
+        this.collisionOffset = collisionOffset;
+        this.collisionSize = collisionSize;
     }
-    
-    public virtual void Draw(SpriteBatch spriteBatch)
-    {
-        // Базовая реализация пуста – переопределяется в наследниках
-    }
+
+    public virtual void Update(GameTime gameTime) { }
+    public virtual void Draw(SpriteBatch spriteBatch) { }
 }

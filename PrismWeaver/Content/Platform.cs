@@ -16,6 +16,6 @@ public class Platform : GameObject
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(texture, Rectangle, Color.White);
+        spriteBatch.Draw(texture, DrawRectangle, Color.White);
     }
 }

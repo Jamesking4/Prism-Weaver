@@ -18,10 +18,11 @@ public class PlayerAnimation
     
     public PlayerDirection playerDirection;
 
-    private static int FrameWidth { get; } = 128;
-    private static int FrameHeight { get; } = 128;
+    public static int FrameWidth { get; } = 128;
+    public static int FrameHeight { get; } = 128;
     public static int RealFrameWidth { get; } = 52;
     public static int RealFrameHeight { get; } = 70;
+    private Point frameSize;
 
     private int countFrameIdle = 5;
     private int countFrameRun = 6;
@@ -33,10 +34,10 @@ public class PlayerAnimation
     private float frameTimeJump = 0.09f;
     private float frameTimeDie = 0.1f;
     
-    public PlayerAnimation(ContentManager content)
+    public PlayerAnimation(ContentManager content, Point frameSize)
     {
         this.content = content;
-        
+        this.frameSize = frameSize;
         animations.Add("idle", CreateFrame("textures/Countess_Vampire/Idle", countFrameIdle, frameTimeIdle, true));
         animations.Add("run", CreateFrame("textures/Countess_Vampire/Run", countFrameRun, frameTimeRun, true));
         animations.Add("jump", CreateFrame("textures/Countess_Vampire/Jump", countFrameJump, frameTimeJump, false));
@@ -49,7 +50,7 @@ public class PlayerAnimation
     private Animation CreateFrame(string path, int countFrame, float frameTime, bool isLooping)
     {
         var texture = content.Load<Texture2D>(path);
-        return new Animation(texture, FrameWidth, FrameHeight, countFrame, RealFrameWidth, RealFrameHeight, frameTime, isLooping);
+        return new Animation(texture, frameSize, countFrame, frameTime, isLooping);
     }
 
     public void Update(GameTime gameTime, Vector2 velocity, bool isGrounded)

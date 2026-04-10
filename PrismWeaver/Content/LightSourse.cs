@@ -18,14 +18,14 @@ public class LightSource : GameObject
     {
     }
 
-    public void Initialize(Texture2D texture, Color color, Direction direction, Texture2D textureTemp, List<GameObject> gameObjects)
+    public void Initialize(GraphicsDeviceManager graphics , Texture2D texture, Color color, Direction direction, Texture2D textureTemp, List<GameObject> gameObjects)
     {
         this.texture = textureTemp;
         this.direction = direction;
         this.color = color;
         
         light = new Light(GetStartLight(), lightWidth, lightHeight);
-        light.Initialize(color, isWork, direction, texture, gameObjects);
+        light.Initialize(graphics, color, isWork, direction, texture, gameObjects);
     }
 
     public override void Update(GameTime gameTime)
@@ -35,7 +35,7 @@ public class LightSource : GameObject
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(texture, Rectangle, color);
+        spriteBatch.Draw(texture, DrawRectangle, color);
     }
 
     public Light GetLight()
@@ -50,8 +50,8 @@ public class LightSource : GameObject
 
     public Vector2 GetStartLight()
     {
-        var posX = direction == Direction.Left ? -Rectangle.Width / 2  : Rectangle.Width / 2;
-        var posY = direction == Direction.Up ? -Rectangle.Height / 2 : Rectangle.Height / 2;
-        return new Vector2(posX + Rectangle.X, posY + Rectangle.Y - lightHeight / 2);
+        var posX = direction == Direction.Left ? -CollisionRectangle.Width / 2  : CollisionRectangle.Width / 2;
+        var posY = direction == Direction.Up ? -CollisionRectangle.Height / 2 : CollisionRectangle.Height / 2;
+        return new Vector2(posX + CollisionRectangle.X, posY + CollisionRectangle.Y - lightHeight / 2);
     }
 }
