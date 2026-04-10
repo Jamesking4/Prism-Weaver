@@ -49,28 +49,35 @@ public abstract class DynamicObject : GameObject
             if (!CollisionRectangle.Intersects(rec))
                 continue;
             
+            var otherObj = gameObjects.FirstOrDefault(obj => obj.CollisionRectangle == rec);
+            var otherIsPushable = otherObj?.IsPushable ?? false;
+            var thisIsPlayer = this is Player;
+            
             if ((CollisionRectangle.Bottom < rec.Top + rec.Height / 2)
-                && !(CollisionRectangle.IsPlatformLeft(rec) ||
-                     CollisionRectangle.IsPlatformRight(rec)))
+                && !(CollisionRectangle.IsRectangleLeft(rec) || CollisionRectangle.IsRectangleRight(rec)))
             {
                 Position = new Vector2(Position.X, rec.Top - collisionSize.Y);
                 Velocity.Y = 0;
             }
             else if ((CollisionRectangle.Top > rec.Bottom - rec.Height / 2)
-                     && !(CollisionRectangle.IsPlatformLeft(rec) ||
-                          CollisionRectangle.IsPlatformRight(rec)))
+                     && !(CollisionRectangle.IsRectangleLeft(rec) || CollisionRectangle.IsRectangleRight(rec)))
             {
                 Position = new Vector2(Position.X, rec.Bottom);
                 Velocity.Y = 0;
             }
-
             else if (CollisionRectangle.Right < rec.Right - rec.Width / 2)
             {
+                if (thisIsPlayer && otherIsPushable)
+                    continue;
+
                 Position = new Vector2(rec.Left - collisionSize.X, Position.Y);
                 Velocity.X = 0;
             }
             else if (CollisionRectangle.Left > rec.Right - rec.Width / 2)
             {
+                if (thisIsPlayer && otherIsPushable)
+                    continue;
+
                 Position = new Vector2(rec.Right, Position.Y);
                 Velocity.X = 0;
             }
@@ -80,7 +87,7 @@ public abstract class DynamicObject : GameObject
     private void ChangeVelocityIfKnockUp()
     {
         var rectangles = GetRectangleWithCollision();
-        if (rectangles.Any(rect => CollisionRectangle.IsPlatformUp(rect)))
+        if (rectangles.Any(rect => CollisionRectangle.IsRectangleUp(rect)))
         {
             Velocity.Y = 1f;
         }

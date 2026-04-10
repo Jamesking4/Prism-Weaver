@@ -21,7 +21,7 @@ public static class Gravitation
     public static bool IsGrounded(GraphicsDeviceManager graphics, Rectangle rectangle, List<Rectangle> rectangles)
     {
         return rectangle.Bottom >= graphics.GraphicsDevice.Viewport.Height 
-               || rectangles.Any(checkRectangle => rectangle.IsPlatformDown(checkRectangle));
+               || rectangles.Any(checkRectangle => rectangle.IsRectangleDown(checkRectangle));
     }
 
     public static float GetGravitationConst() => GravitationalConstant;

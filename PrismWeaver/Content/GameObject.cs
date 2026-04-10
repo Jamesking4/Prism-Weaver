@@ -11,6 +11,7 @@ public abstract class GameObject
     protected int Height { get; set; }
 
     public bool IsColliding { get; set; }
+    public bool IsPushable { get; set; } = false;
     
     public Rectangle DrawRectangle => new(
         (int)(Position.X - collisionOffset.X),
