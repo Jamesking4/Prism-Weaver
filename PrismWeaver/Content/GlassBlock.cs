@@ -8,7 +8,7 @@ namespace PrismWeaver.Content;
 
 public class GlassBlock : DynamicObject
 {
-    private Color color;
+    public Color Color { get; private set; }
     private Texture2D texture;
     
     private const float PushForce = 1f;
@@ -24,7 +24,7 @@ public class GlassBlock : DynamicObject
 
     public void Initialize(Color color, Texture2D texture)
     {
-        this.color = color;
+        Color = color;
         this.texture = texture;
     }
 
@@ -37,7 +37,7 @@ public class GlassBlock : DynamicObject
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(texture, DrawRectangle, color);
+        spriteBatch.Draw(texture, DrawRectangle, Color);
     }
 
     private void ApplyPlayerForce()

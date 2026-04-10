@@ -16,11 +16,11 @@ public abstract class DynamicObject : GameObject
     public bool IsGrounded => FindIsGrounded();
 
     public DynamicObject(GraphicsDeviceManager graphics, Vector2 startPosition, int width, int height,
-        List<GameObject> gameObjects, float MaxVelocityX = 4f) : base(startPosition, width, height)
+        List<GameObject> gameObjects, float maxVelocityX = 4f) : base(startPosition, width, height)
     {
         this.graphics = graphics;
         this.gameObjects = gameObjects;
-        this.MaxVelocityX = MaxVelocityX;
+        MaxVelocityX = maxVelocityX;
     }
 
     public override void Update(GameTime gameTime) { }
@@ -33,12 +33,61 @@ public abstract class DynamicObject : GameObject
         Move();
     }
 
-    private void Move()
+   private void Move()
     {
         Velocity.X = Math.Clamp(Velocity.X, -MaxVelocityX, MaxVelocityX);
-
         var collisions = GetRectangleWithCollision();
-        
+
+        Position = new Vector2(Position.X, Position.Y + Velocity.Y);
+        foreach (var rect in collisions)
+        {
+            if (!CollisionRectangle.Intersects(rect))
+                continue;
+
+            var otherObj = gameObjects.FirstOrDefault(obj => obj.CollisionRectangle == rect);
+            var thisIsPushable = IsPushable;
+            var otherIsPushable = otherObj?.IsPushable ?? false;
+            var thisIsPlayer = this is Player;
+            var otherIsPlayer = otherObj is Player;
+
+            var playerLandsOnPushable = thisIsPlayer && otherIsPushable && Velocity.Y >= 0 
+                && CollisionRectangle.Bottom > rect.Top && CollisionRectangle.Bottom - rect.Top < collisionSize.Y / 2;
+
+            if (!playerLandsOnPushable)
+            {
+                if ((thisIsPushable && otherIsPlayer) || (thisIsPlayer && otherIsPushable))
+                    continue;
+            }
+
+            var intersection = Rectangle.Intersect(CollisionRectangle, rect);
+            if (intersection.Height < intersection.Width)
+            {
+                if (Velocity.Y > 0)
+                {
+                    Position = new Vector2(Position.X, rect.Top - collisionSize.Y);
+                    Velocity.Y = 0;
+                }
+                else if (Velocity.Y < 0)
+                {
+                    Position = new Vector2(Position.X, rect.Bottom);
+                    Velocity.Y = 0;
+                }
+                else
+                {
+                    if (CollisionRectangle.Center.Y < rect.Center.Y)
+                        Position = new Vector2(Position.X, rect.Top - collisionSize.Y);
+                    else
+                        Position = new Vector2(Position.X, rect.Bottom);
+                    Velocity.Y = 0;
+                }
+            }
+            else
+            {
+                Position = new Vector2(Position.X, Position.Y - Velocity.Y);
+                Velocity.Y = 0;
+            }
+        }
+
         Position = new Vector2(Position.X + Velocity.X, Position.Y);
         foreach (var rect in collisions)
         {
@@ -48,9 +97,8 @@ public abstract class DynamicObject : GameObject
             var otherObj = gameObjects.FirstOrDefault(obj => obj.CollisionRectangle == rect);
             var otherIsPushable = otherObj?.IsPushable ?? false;
             var thisIsPlayer = this is Player;
-
             var intersection = Rectangle.Intersect(CollisionRectangle, rect);
-            
+
             if (intersection.Width < intersection.Height)
             {
                 if (CollisionRectangle.Center.X < rect.Center.X)
@@ -70,28 +118,10 @@ public abstract class DynamicObject : GameObject
                     }
                 }
             }
-        }
-        
-        Position = new Vector2(Position.X, Position.Y + Velocity.Y);
-        foreach (var rect in collisions)
-        {
-            if (!CollisionRectangle.Intersects(rect))
-                continue;
-
-            var intersection = Rectangle.Intersect(CollisionRectangle, rect);
-            
-            if (intersection.Height < intersection.Width)
+            else
             {
-                if (CollisionRectangle.Center.Y < rect.Center.Y)
-                {
-                    Position = new Vector2(Position.X, rect.Top - collisionSize.Y);
-                    Velocity.Y = 0;
-                }
-                else
-                {
-                    Position = new Vector2(Position.X, rect.Bottom);
-                    Velocity.Y = 0;
-                }
+                Position = new Vector2(Position.X - Velocity.X, Position.Y);
+                Velocity.X = 0;
             }
         }
     }

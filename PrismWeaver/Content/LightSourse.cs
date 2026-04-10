@@ -18,7 +18,7 @@ public class LightSource : GameObject
     {
     }
 
-    public void Initialize(GraphicsDeviceManager graphics , Texture2D texture, Color color, Direction direction, Texture2D textureTemp, List<GameObject> gameObjects)
+    public void Initialize(GraphicsDeviceManager graphics, Texture2D texture, Color color, Direction direction, Texture2D textureTemp, List<GameObject> gameObjects)
     {
         this.texture = textureTemp;
         this.direction = direction;
@@ -52,6 +52,6 @@ public class LightSource : GameObject
     {
         var posX = direction == Direction.Left ? -CollisionRectangle.Width / 2  : CollisionRectangle.Width / 2;
         var posY = direction == Direction.Up ? -CollisionRectangle.Height / 2 : CollisionRectangle.Height / 2;
-        return new Vector2(posX + CollisionRectangle.X, posY + CollisionRectangle.Y - lightHeight / 2);
+        return new Vector2(posX + CollisionRectangle.X, posY + CollisionRectangle.Y - lightHeight / 2f);
     }
 }
