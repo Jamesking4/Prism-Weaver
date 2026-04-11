@@ -29,7 +29,7 @@ public abstract class DynamicObject : GameObject
     public void BaseMove()
     {
         AffordGravity();
-        (Position, Velocity) = Window.GetPositionAndVelocityInWindow(graphics, CollisionRectangle, Velocity);
+        (Position, Velocity) = GetPositionAndVelocityInWindow(graphics, CollisionRectangle, Velocity);
         Move();
     }
 
@@ -143,5 +143,36 @@ public abstract class DynamicObject : GameObject
     private bool FindIsGrounded()
     {
         return Gravitation.IsGrounded(graphics, CollisionRectangle, GetRectangleWithCollision());
+    }
+    
+    private static (Vector2, Vector2) GetPositionAndVelocityInWindow(GraphicsDeviceManager graphics, Rectangle rectangle, Vector2 velocity)
+    {
+        var position = new Vector2(rectangle.X, rectangle.Y);
+        var newVelocity = new Vector2(velocity.X, velocity.Y);;
+        if (rectangle.Left < 0)
+        {
+            position.X = 0;
+            newVelocity.X = 0;
+        }
+
+        if (rectangle.Right > graphics.GraphicsDevice.Viewport.Width)
+        {
+            position.X = graphics.GraphicsDevice.Viewport.Width - rectangle.Width;
+            newVelocity.X = 0;
+        }
+
+        if (rectangle.Top < 0)
+        {
+            position.Y = 0;
+            newVelocity.Y = 0;
+        }
+
+        if (rectangle.Bottom > graphics.GraphicsDevice.Viewport.Height)
+        {
+            position.Y = graphics.GraphicsDevice.Viewport.Height - rectangle.Height;
+            newVelocity.Y = 0;
+        }
+
+        return (position, newVelocity);
     }
 }

@@ -6,16 +6,16 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace PrismWeaver.Content;
 
-public class GlassBlock : DynamicObject
+public abstract class PushableBlock : DynamicObject
 {
     public Color Color { get; private set; }
     private Texture2D texture;
     
-    private const float PushForce = 1f;
-    private const float Friction = 0.8f;
+    private const float PushForce = 0.8f;
+    private const float Friction = 0.9f;
     private const float StopThreshold = 0.05f;
 
-    public GlassBlock(GraphicsDeviceManager graphics, Vector2 startPosition, int width, int height, 
+    protected PushableBlock(GraphicsDeviceManager graphics, Vector2 startPosition, int width, int height, 
         List<GameObject> gameObjects, float maxVelocityX = 3f) 
         : base(graphics, startPosition, width, height, gameObjects, maxVelocityX)
     {
@@ -55,8 +55,8 @@ public class GlassBlock : DynamicObject
     {
         var player = gameObjects.OfType<Player>().FirstOrDefault();
         var isPlayerPushing = player != null && 
-            (CollisionRectangle.IsRectangleRight(player.CollisionRectangle) ||
-             CollisionRectangle.IsRectangleLeft(player.CollisionRectangle));
+                              (CollisionRectangle.IsRectangleRight(player.CollisionRectangle) ||
+                               CollisionRectangle.IsRectangleLeft(player.CollisionRectangle));
 
         if (!isPlayerPushing)
         {

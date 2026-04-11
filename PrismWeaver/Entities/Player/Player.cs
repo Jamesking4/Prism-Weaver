@@ -41,10 +41,6 @@ public class Player : DynamicObject
     {
         var drawPosition = Position - collisionOffset;
         playerAnimation.Draw(spriteBatch, drawPosition);
-        
-        var pixel = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
-        pixel.SetData([Color.Red]);
-        spriteBatch.Draw(pixel, CollisionRectangle, Color.Red * 0.5f);
     }
 
     public void MoveRight()
