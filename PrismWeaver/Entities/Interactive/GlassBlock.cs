@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using PrismWeaver.Core;
 
-namespace PrismWeaver.Content;
+namespace PrismWeaver.Entities.Interactive;
 
 public class GlassBlock : PushableBlock
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-namespace PrismWeaver.Content;
+namespace PrismWeaver.Utilities;
 
 public static class RectangleExtensions
 {

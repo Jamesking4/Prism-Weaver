@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace PrismWeaver.Content;
+namespace PrismWeaver.Utilities;
 
 public class Animation
 {

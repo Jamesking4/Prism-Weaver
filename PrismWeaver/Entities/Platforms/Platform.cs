@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using PrismWeaver.Core;
 
-namespace PrismWeaver.Content;
+namespace PrismWeaver.Entities.Platforms;
 
 public class Platform : GameObject
 {

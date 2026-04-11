@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace PrismWeaver.Content;
+namespace PrismWeaver.Core;
 
 public abstract class GameObject
 {

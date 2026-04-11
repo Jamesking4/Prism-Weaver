@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using PrismWeaver.Content.textures;
+using PrismWeaver.Utilities;
 
-namespace PrismWeaver.Content;
+namespace PrismWeaver.Entities.Players;
 
 public class PlayerAnimation
 {
@@ -16,7 +16,7 @@ public class PlayerAnimation
     private string currentState;
     private SpriteEffects effects;
     
-    public PlayerDirection playerDirection;
+    public PlayerDirection PlayerDirection;
 
     public static int FrameWidth { get; } = 128;
     public static int FrameHeight { get; } = 128;
@@ -67,9 +67,9 @@ public class PlayerAnimation
             newState = "idle";
         
         if (velocity.X > 0)
-            playerDirection = PlayerDirection.Right;
+            PlayerDirection = PlayerDirection.Right;
         else if (velocity.X < 0)
-            playerDirection = PlayerDirection.Left;
+            PlayerDirection = PlayerDirection.Left;
         
         if (currentState != newState)
             ChangeState(newState);
@@ -77,7 +77,7 @@ public class PlayerAnimation
     
     public void Draw(SpriteBatch spriteBatch, Vector2 position)
     {
-        effects = playerDirection == PlayerDirection.Left ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+        effects = PlayerDirection == PlayerDirection.Left ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
         currentAnimation.Draw(spriteBatch, position, effects);
     }
     

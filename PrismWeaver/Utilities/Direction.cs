@@ -1,4 +1,4 @@
-﻿namespace PrismWeaver.Content;
+﻿namespace PrismWeaver.Utilities;
 
 public enum Direction
 {

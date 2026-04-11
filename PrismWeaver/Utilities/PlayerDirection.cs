@@ -1,4 +1,4 @@
-﻿namespace PrismWeaver.Content.textures;
+﻿namespace PrismWeaver.Utilities;
 
 public enum PlayerDirection
 {

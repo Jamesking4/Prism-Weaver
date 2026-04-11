@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using PrismWeaver.Utilities;
 
-namespace PrismWeaver.Content;
+namespace PrismWeaver.Physics;
 
 public static class Gravitation
 {

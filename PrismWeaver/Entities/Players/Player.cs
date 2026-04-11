@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using PrismWeaver.Content.textures;
+using PrismWeaver.Core;
+using PrismWeaver.Physics;
+using PrismWeaver.Utilities;
 
-namespace PrismWeaver.Content;
+namespace PrismWeaver.Entities.Players;
 
 public class Player : DynamicObject
 {
@@ -85,12 +87,12 @@ public class Player : DynamicObject
         else if (Velocity.X > Epsilon)
         {
             Velocity.X -= DiffVelocityX;
-            playerAnimation.playerDirection = PlayerDirection.Right;
+            playerAnimation.PlayerDirection = PlayerDirection.Right;
         }
         else if (Velocity.X < -Epsilon)
         {
             Velocity.X += DiffVelocityX;
-            playerAnimation.playerDirection = PlayerDirection.Left;
+            playerAnimation.PlayerDirection = PlayerDirection.Left;
         }
     }
 

@@ -5,7 +5,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using PrismWeaver.Content;
+using PrismWeaver.Core;
+using PrismWeaver.Entities.Interactive;
+using PrismWeaver.Entities.Lights;
+using PrismWeaver.Entities.Platforms;
+using PrismWeaver.Entities.Players;
+using PrismWeaver.Utilities;
 
 namespace PrismWeaver;
 
