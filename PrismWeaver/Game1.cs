@@ -59,7 +59,7 @@ public class Game1 : Game
             gameObjects.Add(platform);
         }
         
-        var lightSource = new LightSource(new Vector2(0, windowHeight - 40),30, 30);
+        var lightSource = new LightSource(new Vector2(windowWidth / 2f, windowHeight - 160),30, 30);
         lightSource.Initialize(graphics, pixelTexture2, Color.Red, Direction.Right, pixelTexture, gameObjects);
         gameObjects.Add(lightSource);
         gameObjects.Add(lightSource.GetLight());

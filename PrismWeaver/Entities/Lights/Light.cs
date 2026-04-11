@@ -15,14 +15,20 @@ public class Light : GameObject
     private bool enabled;
     private List<GameObject> gameObjects;
     private GraphicsDeviceManager graphics;
+    private LightSource source;
+    private int lightWidth;
     
-    public Light(Vector2 startPosition, int width, int height) 
+    public Light(LightSource source, int lightWidth, 
+        Vector2 startPosition = new Vector2(), int width = 0, int height = 0) 
         : base(startPosition, width, height)
     {
         IsColliding = false;
+        this.source = source;
+        this.lightWidth = lightWidth;
     }
 
-    public void Initialize(GraphicsDeviceManager graphics, Color color, bool isWork, Direction direction, Texture2D texture, List<GameObject> gameObjects)
+    public void Initialize(GraphicsDeviceManager graphics, Color color, bool isWork, Direction direction, 
+        Texture2D texture, List<GameObject> gameObjects)
     {
         this.color = color;
         this.direction = direction;
@@ -36,7 +42,7 @@ public class Light : GameObject
 
     public override void Update(GameTime gameTime)
     {
-        (Width, Height) = CalculateWidthAndHeight();
+        CalculateNewWidthAndHeight();
         collisionSize.X = Width;
         collisionSize.Y = Height;
     }
@@ -47,70 +53,97 @@ public class Light : GameObject
             spriteBatch.Draw(texture, DrawRectangle, color);
     }
 
-    private Tuple<int, int> CalculateWidthAndHeight()
+    private void CalculateNewWidthAndHeight()
     {
-        var width = CollisionRectangle.Width;
-        var height = CollisionRectangle.Height;
-        if (direction == Direction.Right)
+        var sourceRect = source.CollisionRectangle;
+        var viewport = graphics.GraphicsDevice.Viewport;
+        var minDistance = float.MaxValue;
+
+        foreach (var obj in gameObjects)
         {
-            width = graphics.GraphicsDevice.Viewport.Width;
-            foreach (var obj in gameObjects)
+            if (obj is Light or LightSource) continue;
+            var objRect = obj.CollisionRectangle;
+
+            var distance = float.MaxValue;
+
+            switch (direction)
             {
-                if (obj is LightSource or Light)
-                    continue;
-                
-                if (obj.CollisionRectangle.Intersects(CollisionRectangle))
-                    width = (int)(obj.CollisionRectangle.Right - obj.CollisionRectangle.Width / 2 - Position.X);
+                case Direction.Up:
+                    if (objRect.Bottom <= sourceRect.Top &&
+                        objRect.Right > sourceRect.Center.X - lightWidth / 2f &&
+                        objRect.Left < sourceRect.Center.X + lightWidth / 2f)
+                    {
+                        var penetration = objRect.Height / 10f;
+                        distance = (sourceRect.Top - objRect.Bottom) + penetration;
+                    }
+                    break;
+
+                case Direction.Down:
+                    if (objRect.Top >= sourceRect.Bottom &&
+                        objRect.Right > sourceRect.Center.X - lightWidth / 2f &&
+                        objRect.Left < sourceRect.Center.X + lightWidth / 2f)
+                    {
+                        var penetration = objRect.Height / 10f;
+                        distance = (objRect.Top - sourceRect.Bottom) + penetration;
+                    }
+                    break;
+
+                case Direction.Left:
+                    if (objRect.Right <= sourceRect.Left &&
+                        objRect.Bottom > sourceRect.Center.Y - lightWidth / 2f &&
+                        objRect.Top < sourceRect.Center.Y + lightWidth / 2f)
+                    {
+                        distance = sourceRect.Left - objRect.Center.X;
+                    }
+                    break;
+
+                case Direction.Right:
+                    if (objRect.Left >= sourceRect.Right &&
+                        objRect.Bottom > sourceRect.Center.Y - lightWidth / 2f &&
+                        objRect.Top < sourceRect.Center.Y + lightWidth / 2f)
+                    {
+                        distance = objRect.Center.X - sourceRect.Right;
+                    }
+                    break;
+            }
+
+            if (distance >= 0 && distance < minDistance)
+                minDistance = distance;
+        }
+        
+        if (Math.Abs(minDistance - float.MaxValue) < 0.001f)
+        {
+            switch (direction)
+            {
+                case Direction.Up:    minDistance = sourceRect.Top; break;
+                case Direction.Down:  minDistance = viewport.Height - sourceRect.Bottom; break;
+                case Direction.Left:  minDistance = sourceRect.Left; break;
+                case Direction.Right: minDistance = viewport.Width - sourceRect.Right; break;
             }
         }
         
-        else if (direction == Direction.Left)
+        switch (direction)
         {
-            width = graphics.GraphicsDevice.Viewport.Width;
-            foreach (var obj in gameObjects)
-            {
-                if (obj is LightSource or Light)
-                    continue;
-                
-                if (obj.CollisionRectangle.Intersects(CollisionRectangle))
-                    width = (int)(Position.X - obj.CollisionRectangle.Right - obj.CollisionRectangle.Width / 2);
-            }
+            case Direction.Up:
+                Width = lightWidth;
+                Height = (int)minDistance;
+                Position = new Vector2(sourceRect.Center.X - lightWidth / 2f, sourceRect.Top - Height);
+                break;
+            case Direction.Down:
+                Width = lightWidth;
+                Height = (int)minDistance;
+                Position = new Vector2(sourceRect.Center.X - lightWidth / 2f, sourceRect.Bottom);
+                break;
+            case Direction.Left:
+                Width = (int)minDistance;
+                Height = lightWidth;
+                Position = new Vector2(sourceRect.Left - Width, sourceRect.Center.Y - lightWidth / 2f);
+                break;
+            case Direction.Right:
+                Width = (int)minDistance;
+                Height = lightWidth;
+                Position = new Vector2(sourceRect.Right, sourceRect.Center.Y - lightWidth / 2f);
+                break;
         }
-        
-        else if (direction == Direction.Down)
-        {
-            height = graphics.GraphicsDevice.Viewport.Height;
-            foreach (var obj in gameObjects)
-            {
-                if (obj is LightSource or Light)
-                    continue;
-                
-                if (obj.CollisionRectangle.Intersects(CollisionRectangle))
-                    height = (int)(obj.CollisionRectangle.Top + obj.CollisionRectangle.Height / 2 - Position.Y);
-            }
-        }
-        
-        else 
-        {
-            height = graphics.GraphicsDevice.Viewport.Height;
-            foreach (var obj in gameObjects)
-            {
-                if (obj is LightSource or Light)
-                    continue;
-                
-                if (obj.CollisionRectangle.Intersects(CollisionRectangle))
-                    height = (int)(Position.Y - obj.CollisionRectangle.Top + obj.CollisionRectangle.Height / 2);
-            }
-        }
-        
-        return new Tuple<int, int>(width, height);
-    }
-    
-    private List<Rectangle> GetRectangles()
-    {
-        return gameObjects
-            .Where(obj => obj is not LightSource && obj != this)
-            .Select(p => p.CollisionRectangle)
-            .ToList();
     }
 }

@@ -60,9 +60,11 @@ public class Player : DynamicObject
 
         var distToPlatformOver = 0;
         var minDistToPlatformOver = int.MaxValue;
-        foreach (var platform in gameObjects)
+        foreach (var obj in gameObjects)
         {
-            distToPlatformOver = CollisionRectangle.GetDistToRectangleOver(platform.CollisionRectangle);
+            if (obj == this || !obj.IsColliding)
+                continue;
+            distToPlatformOver = CollisionRectangle.GetDistToRectangleOver(obj.CollisionRectangle);
             if (distToPlatformOver != -1)
             {
                 minDistToPlatformOver = Math.Min(distToPlatformOver, minDistToPlatformOver);

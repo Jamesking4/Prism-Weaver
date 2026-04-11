@@ -10,8 +10,7 @@ public class LightSource : GameObject
     private bool isWork = true;
     private Texture2D texture;
     private Light light;
-    private int lightWidth = 1000;
-    private int lightHeight = 5;
+    private int lightWidth = 5;
     private Color color;
     
     public LightSource(Vector2 startPosition, int width, int height) : base(startPosition, width, height)
@@ -24,7 +23,7 @@ public class LightSource : GameObject
         this.direction = direction;
         this.color = color;
         
-        light = new Light(GetStartLight(), lightWidth, lightHeight);
+        light = new Light(this ,lightWidth);
         light.Initialize(graphics, color, isWork, direction, texture, gameObjects);
     }
 
@@ -46,12 +45,5 @@ public class LightSource : GameObject
     public void SetIsWork(bool isWork)
     {
         this.isWork = isWork;
-    }
-
-    public Vector2 GetStartLight()
-    {
-        var posX = direction == Direction.Left ? -CollisionRectangle.Width / 2  : CollisionRectangle.Width / 2;
-        var posY = direction == Direction.Up ? -CollisionRectangle.Height / 2 : CollisionRectangle.Height / 2;
-        return new Vector2(posX + CollisionRectangle.X, posY + CollisionRectangle.Y - lightHeight / 2f);
     }
 }
