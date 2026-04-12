@@ -8,21 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1b13c6c-ec87-4061-baf0-4e36f9224824" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/Core/DynamicObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/Core/DynamicObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/Entities/Lights/Light.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/Entities/Lights/Light.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/Game1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/Game1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/Utilities/PlayerDirection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/Entities/Players/PlayerDirection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.exe" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/apphost.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/ref/PrismWeaver.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/ref/PrismWeaver.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/refint/PrismWeaver.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/refint/PrismWeaver.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PrismWeaver/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,42 +29,27 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Core/DynamicObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Core/DynamicObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Core/DynamicObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Core/DynamicObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Core/DynamicObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Core/DynamicObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Core/DynamicObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Core/GameObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Core/PushableBlock.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Exit/Door.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Exit/Gates.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Interactive/GlassBlock.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Interactive/RecepientLight.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Lights/LightSource.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Platforms/Platform.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Players/Config.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Players/Player.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Players/PlayerAnimation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Players/PlayerDirection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Game1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/GameConfig.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Physics/Gravitation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Utilities/Animation.cs" root0="FORCE_HIGHLIGHTING" />
@@ -96,23 +67,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Project.PrismWeaver.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.8799172&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Project.PrismWeaver.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "XThreadsFramesViewSplitterKey": "0.8799172",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="PrismWeaver" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -159,6 +130,7 @@
       <workItem from="1775714337920" duration="20072000" />
       <workItem from="1775805893463" duration="16550000" />
       <workItem from="1775901271617" duration="15087000" />
+      <workItem from="1775969890017" duration="9712000" />
     </task>
     <servers />
   </component>
