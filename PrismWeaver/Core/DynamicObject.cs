@@ -53,16 +53,20 @@ public abstract class DynamicObject : GameObject
         
         (Position, Velocity) = ApplyWindowBoundary(CollisionRectangle, Velocity);
 
-        if (!CanMoveLeft && Velocity.X < 0) Velocity.X = 0;
-        if (!CanMoveRight && Velocity.X > 0) Velocity.X = 0;
+        if (!CanMoveLeft && Velocity.X < 0)
+            Velocity.X = 0;
+        if (!CanMoveRight && Velocity.X > 0)
+            Velocity.X = 0;
     }
 
     private void TryShiftStandingBlock(float moveDirection)
     {
-        if (Math.Abs(moveDirection) < 0.01f) return;
+        if (Math.Abs(moveDirection) < 0.01f)
+            return;
         
         var blocksUnder = FindBlocksUnderPlayer();
-        if (blocksUnder.Count == 0) return;
+        if (blocksUnder.Count == 0)
+            return;
         
         var playerWidth = CollisionSize.X;
         var threshold = 1.5f * playerWidth;
@@ -110,7 +114,6 @@ public abstract class DynamicObject : GameObject
 
     private float GetMinDistanceToObstacle(DynamicObject block, int direction)
     {
-        var distance = 0f;
         var maxDistance = 10000f;
         
         for (var d = block.CollisionSize.X / 2f; d <= maxDistance; d += 1f)
@@ -150,10 +153,12 @@ public abstract class DynamicObject : GameObject
 
         foreach (var rect in collisions)
         {
-            if (!newRect.Intersects(rect)) continue;
+            if (!newRect.Intersects(rect))
+                continue;
 
             var otherObj = GameObjects.FirstOrDefault(obj => obj.CollisionRectangle == rect);
-            if (otherObj == null) continue;
+            if (otherObj == null)
+                continue;
 
             if (HandleCollisionWithObject(newRect, rect, otherObj))
                 return;
@@ -170,19 +175,19 @@ public abstract class DynamicObject : GameObject
         if (thisIsPlayer && otherIsPushable)
         {
             var block = otherObj as DynamicObject;
-            if (block == null) return false;
+            if (block == null)
+                return false;
             
             var playerIsLeft = newRect.Center.X < rect.Center.X;
             var playerIsRight = newRect.Center.X > rect.Center.X;
-            if (!(playerIsLeft || playerIsRight)) return false;
+            if (!(playerIsLeft || playerIsRight))
+                return false;
 
             return HandlePushableCollision(rect, block, playerIsLeft, newRect);
         }
-        else
-        {
-            HandleNonPushableCollision(rect, newRect);
-            return true;
-        }
+
+        HandleNonPushableCollision(rect, newRect);
+        return true;
     }
 
     private bool HandlePushableCollision(Rectangle rect, DynamicObject block, bool playerIsLeft, Rectangle newRect)
@@ -196,11 +201,8 @@ public abstract class DynamicObject : GameObject
             ApplyPushSuccess(block, playerIsLeft);
             return true;
         }
-        else
-        {
-            ApplyPushFailure(rect, playerIsLeft);
-            return true;
-        }
+        ApplyPushFailure(rect, playerIsLeft);
+        return true;
     }
 
     private void ApplyPushSuccess(DynamicObject block, bool playerIsLeft)
@@ -250,12 +252,13 @@ public abstract class DynamicObject : GameObject
         var collisions = GetRectanglesWithCollision();
         foreach (var rect in collisions)
         {
-            if (!CollisionRectangle.Intersects(rect)) continue;
+            if (!CollisionRectangle.Intersects(rect))
+                continue;
 
             var otherObj = GameObjects.FirstOrDefault(obj => obj.CollisionRectangle == rect);
             
-            // Блоки не опираются на игрока
-            if (this is not Player && otherObj is Player) continue;
+            if (this is not Player && otherObj is Player)
+                continue;
 
             if (TryHandlePlayerLandingOnPushable(rect, otherObj))
                 continue;
@@ -308,12 +311,16 @@ public abstract class DynamicObject : GameObject
 
     private bool TryPushBlockChain(DynamicObject block, float pushDistance)
     {
-        if (block == null || !block.IsPushable) return false;
-        if (Math.Abs(pushDistance) < 0.01f) return true;
-        if (!CanPushDirection(block, pushDistance)) return false;
+        if (block == null || !block.IsPushable)
+            return false;
+        if (Math.Abs(pushDistance) < 0.01f)
+            return true;
+        if (!CanPushDirection(block, pushDistance))
+            return false;
 
         var stack = GetCompleteStack(block);
-        if (!CanPushStack(stack, pushDistance)) return false;
+        if (!CanPushStack(stack, pushDistance))
+            return false;
 
         PushStack(stack, pushDistance);
         return true;
@@ -321,8 +328,10 @@ public abstract class DynamicObject : GameObject
 
     private bool CanPushDirection(DynamicObject block, float pushDistance)
     {
-        if (pushDistance > 0 && !block.CanMoveRight) return false;
-        if (pushDistance < 0 && !block.CanMoveLeft) return false;
+        if (pushDistance > 0 && !block.CanMoveRight)
+            return false;
+        if (pushDistance < 0 && !block.CanMoveLeft)
+            return false;
         return true;
     }
 
@@ -335,7 +344,8 @@ public abstract class DynamicObject : GameObject
 
     private void GatherStackAbove(DynamicObject block, HashSet<DynamicObject> stack)
     {
-        if (!stack.Add(block)) return;
+        if (!stack.Add(block))
+            return;
 
         var aboveRect = new Rectangle(
             block.CollisionRectangle.X,
@@ -345,8 +355,10 @@ public abstract class DynamicObject : GameObject
 
         foreach (var obj in GameObjects)
         {
-            if (obj == block || obj == this) continue;
-            if (!obj.IsPushable) continue;
+            if (obj == block || obj == this)
+                continue;
+            if (!obj.IsPushable)
+                continue;
             if (obj is DynamicObject other && other.CollisionRectangle.Intersects(aboveRect))
                 GatherStackAbove(other, stack);
         }
@@ -363,16 +375,20 @@ public abstract class DynamicObject : GameObject
             var testRect = new Rectangle((int)newX, (int)b.Position.Y, b.CollisionSize.X, b.CollisionSize.Y);
             foreach (var other in GameObjects)
             {
-                if (other == b || stack.Contains(other as DynamicObject)) continue;
-                if (!other.IsColliding) continue;
-                if (!testRect.Intersects(other.CollisionRectangle)) continue;
+                if (other == b || stack.Contains(other as DynamicObject))
+                    continue;
+                if (!other.IsColliding)
+                    continue;
+                if (!testRect.Intersects(other.CollisionRectangle))
+                    continue;
 
                 if (other.IsPushable && other is DynamicObject otherBlock)
                 {
                     if (!TryPushBlockChain(otherBlock, pushDistance))
                         return false;
                 }
-                else return false;
+                else
+                    return false;
             }
         }
         return true;
@@ -389,7 +405,8 @@ public abstract class DynamicObject : GameObject
 
     private int CountPushedBlocks(DynamicObject block, float pushDistance)
     {
-        if (block == null || !block.IsPushable) return 0;
+        if (block == null || !block.IsPushable)
+            return 0;
 
         var count = 1;
         var testRect = new Rectangle(
@@ -400,8 +417,10 @@ public abstract class DynamicObject : GameObject
 
         foreach (var other in GameObjects)
         {
-            if (other == block || other == this) continue;
-            if (!other.IsColliding || !other.IsPushable) continue;
+            if (other == block || other == this)
+                continue;
+            if (!other.IsColliding || !other.IsPushable)
+                continue;
 
             if (testRect.Intersects(other.CollisionRectangle) && other is DynamicObject otherBlock)
                 count += CountPushedBlocks(otherBlock, pushDistance);

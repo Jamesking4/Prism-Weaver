@@ -8,7 +8,7 @@ public static class Config
     public static int FrameHeight = 128;
     public static int RealFrameWidth = 38;
     public static int RealFrameHeight = 70;
-    public static Point FrameSize = new Point(FrameWidth, FrameHeight);
+    public static Point FrameSize = new(FrameWidth, FrameHeight);
 
     public static int CountFrameIdle = 5;
     public static int CountFrameRun = 6;
