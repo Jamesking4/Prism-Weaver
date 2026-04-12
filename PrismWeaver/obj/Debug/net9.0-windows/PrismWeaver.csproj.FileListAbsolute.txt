@@ -49,3 +49,4 @@ C:\Project\c#\Prism Weaver\PrismWeaver\PrismWeaver\bin\Debug\net9.0-windows\runt
 C:\Project\c#\Prism Weaver\PrismWeaver\PrismWeaver\bin\Debug\net9.0-windows\Content\textures\platform.xnb
 C:\Project\c#\Prism Weaver\PrismWeaver\PrismWeaver\bin\Debug\net9.0-windows\Content\sounds\background_music.ogg
 C:\Project\c#\Prism Weaver\PrismWeaver\PrismWeaver\bin\Debug\net9.0-windows\Content\sounds\background_music.xnb
+C:\Project\c#\Prism Weaver\PrismWeaver\PrismWeaver\obj\Debug\net9.0-windows\PrismWeaver.sourcelink.json

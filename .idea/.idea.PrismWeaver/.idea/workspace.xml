@@ -7,9 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1b13c6c-ec87-4061-baf0-4e36f9224824" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PrismWeaver/.gitignore" afterDir="false" />
-    </list>
+    <list default="true" id="e1b13c6c-ec87-4061-baf0-4e36f9224824" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -130,7 +128,7 @@
       <workItem from="1775714337920" duration="20072000" />
       <workItem from="1775805893463" duration="16550000" />
       <workItem from="1775901271617" duration="15087000" />
-      <workItem from="1775969890017" duration="9712000" />
+      <workItem from="1775969890017" duration="10595000" />
     </task>
     <servers />
   </component>
