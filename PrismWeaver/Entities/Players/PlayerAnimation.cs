@@ -53,7 +53,7 @@ public class PlayerAnimation
         return new Animation(texture, frameSize, countFrame, frameTime, isLooping);
     }
 
-    public void Update(GameTime gameTime, Vector2 velocity, bool isGrounded)
+    public void Update(GameTime gameTime, Vector2 velocity, bool isGrounded, bool canMove)
     {
         currentAnimation.Update(gameTime);
         
@@ -61,7 +61,7 @@ public class PlayerAnimation
         
         if (!isGrounded || velocity.Y != 0)
             newState = "jump";
-        else if (Math.Abs(velocity.X) > 0.3f)
+        else if (Math.Abs(velocity.X) > 0.3f && canMove)
             newState = "run";
         else
             newState = "idle";

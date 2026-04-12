@@ -35,7 +35,8 @@ public class Player : DynamicObject
     public override void Update(GameTime gameTime)
     {
         BaseMove();
-        playerAnimation.Update(gameTime, Velocity, IsGrounded);
+        var canMove = CanMoveLeft && CanMoveRight;
+        playerAnimation.Update(gameTime, Velocity, IsGrounded, canMove);
         ChangeJumpCooldown(gameTime);
     }
 
@@ -47,23 +48,11 @@ public class Player : DynamicObject
 
     public void MoveRight()
     {
-        if (!CanMoveRight)
-        {
-            if (Velocity.X > 0) 
-                Velocity.X = 0;
-            return;
-        }
         Velocity.X += DiffVelocityX;
     }
 
     public void MoveLeft()
     {
-        if (!CanMoveLeft)
-        {
-            if (Velocity.X < 0) 
-                Velocity.X = 0;
-            return;
-        }
         Velocity.X -= DiffVelocityX;
     }
     public void Jump()
@@ -71,13 +60,13 @@ public class Player : DynamicObject
         if (!IsGrounded || !isCanJump)
             return;
 
-        var distToPlatformOver = 0;
         var minDistToPlatformOver = int.MaxValue;
         foreach (var obj in GameObjects)
         {
             if (obj == this || !obj.IsColliding)
                 continue;
-            distToPlatformOver = CollisionRectangle.GetDistToRectangleOver(obj.CollisionRectangle);
+            
+            var distToPlatformOver = CollisionRectangle.GetDistToRectangleOver(obj.CollisionRectangle);
             if (distToPlatformOver != -1)
             {
                 minDistToPlatformOver = Math.Min(distToPlatformOver, minDistToPlatformOver);
