@@ -57,7 +57,7 @@ public abstract class DynamicObject : GameObject
     private void TryMoveHorizontal(float deltaX)
     {
         var newX = Position.X + deltaX;
-        var newRect = new Rectangle((int)newX, (int)Position.Y, collisionSize.X, collisionSize.Y);
+        var newRect = new Rectangle((int)newX, (int)Position.Y, CollisionSize.X, CollisionSize.Y);
         
         var collisions = GetRectanglesWithCollision();
         foreach (var rect in collisions)
@@ -94,7 +94,7 @@ public abstract class DynamicObject : GameObject
                                 Velocity.X = 0;
 
                             var newBlockRect = block.CollisionRectangle;
-                            float targetX = playerIsLeft ? newBlockRect.Left - collisionSize.X : newBlockRect.Right;
+                            float targetX = playerIsLeft ? newBlockRect.Left - CollisionSize.X : newBlockRect.Right;
                             Position = new Vector2(targetX, Position.Y);
                             return;
                         }
@@ -103,7 +103,7 @@ public abstract class DynamicObject : GameObject
                             Velocity.X = 0;
                             if (playerIsLeft)
                             {
-                                Position = new Vector2(rect.Left - collisionSize.X, Position.Y);
+                                Position = new Vector2(rect.Left - CollisionSize.X, Position.Y);
                                 CanMoveRight = false;
                             }
                             else
@@ -120,7 +120,7 @@ public abstract class DynamicObject : GameObject
                 {
                     if (newRect.Center.X < rect.Center.X)
                     {
-                        Position = new Vector2(rect.Left - collisionSize.X, Position.Y);
+                        Position = new Vector2(rect.Left - CollisionSize.X, Position.Y);
                         CanMoveRight = false;
                     }
                     else
@@ -155,11 +155,11 @@ public abstract class DynamicObject : GameObject
 
             var playerLandsOnPushable = thisIsPlayer && otherIsPushable && Velocity.Y >= 0
                                         && CollisionRectangle.Bottom > rect.Top
-                                        && CollisionRectangle.Bottom - rect.Top < collisionSize.Y / 2;
+                                        && CollisionRectangle.Bottom - rect.Top < CollisionSize.Y / 2;
 
             if (playerLandsOnPushable)
             {
-                Position = new Vector2(Position.X, rect.Top - collisionSize.Y);
+                Position = new Vector2(Position.X, rect.Top - CollisionSize.Y);
                 Velocity.Y = 0;
                 continue;
             }
@@ -168,13 +168,13 @@ public abstract class DynamicObject : GameObject
             if (intersection.Height < intersection.Width)
             {
                 if (Velocity.Y > 0)
-                    Position = new Vector2(Position.X, rect.Top - collisionSize.Y);
+                    Position = new Vector2(Position.X, rect.Top - CollisionSize.Y);
                 else if (Velocity.Y < 0)
                     Position = new Vector2(Position.X, rect.Bottom);
                 else
                 {
                     Position = CollisionRectangle.Center.Y < rect.Center.Y 
-                        ? new Vector2(Position.X, rect.Top - collisionSize.Y) 
+                        ? new Vector2(Position.X, rect.Top - CollisionSize.Y) 
                         : new Vector2(Position.X, rect.Bottom);
                 }
             }
@@ -203,10 +203,10 @@ public abstract class DynamicObject : GameObject
         foreach (var b in stack)
         {
             var newX = b.Position.X + pushDistance;
-            if (newX < 0 || newX + b.collisionSize.X > graphics.GraphicsDevice.Viewport.Width)
+            if (newX < 0 || newX + b.CollisionSize.X > graphics.GraphicsDevice.Viewport.Width)
                 return false;
         
-            var testRect = new Rectangle((int)newX, (int)b.Position.Y, b.collisionSize.X, b.collisionSize.Y);
+            var testRect = new Rectangle((int)newX, (int)b.Position.Y, b.CollisionSize.X, b.CollisionSize.Y);
             foreach (var other in GameObjects)
             {
                 if (other == b || stack.Contains(other as DynamicObject))
@@ -240,9 +240,9 @@ public abstract class DynamicObject : GameObject
             return;
 
         var aboveRect = new Rectangle(block.CollisionRectangle.X, 
-            block.CollisionRectangle.Y - block.collisionSize.Y,
-            block.collisionSize.X, 
-            block.collisionSize.Y);
+            block.CollisionRectangle.Y - block.CollisionSize.Y,
+            block.CollisionSize.X, 
+            block.CollisionSize.Y);
         foreach (var obj in GameObjects)
         {
             if (obj == block || obj == this)
@@ -263,8 +263,8 @@ public abstract class DynamicObject : GameObject
         var testRect = new Rectangle(
             (int)(block.Position.X + pushDistance),
             (int)block.Position.Y,
-            block.collisionSize.X,
-            block.collisionSize.Y);
+            block.CollisionSize.X,
+            block.CollisionSize.Y);
 
         foreach (var other in GameObjects)
         {

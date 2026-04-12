@@ -5,43 +5,43 @@ namespace PrismWeaver.Utilities;
 
 public static class RectangleExtensions
 {
-    public static bool IsRectangleUp(this Rectangle thisRectangle, Rectangle platformRect, float CollisionTolerance = 2f)
+    public static bool IsRectangleUp(this Rectangle thisRectangle, Rectangle platformRect, float collisionTolerance = 2f)
     {
-        var verticalTouch = Math.Abs(platformRect.Bottom - thisRectangle.Top) <= CollisionTolerance;
+        var verticalTouch = Math.Abs(platformRect.Bottom - thisRectangle.Top) <= collisionTolerance;
         var horizontalOverlap = thisRectangle.Right > platformRect.Left && thisRectangle.Left < platformRect.Right;
     
         return verticalTouch && horizontalOverlap;
     }
 
-    public static bool IsRectangleDown(this Rectangle thisRectangle, Rectangle platformRect, float CollisionTolerance = 2f)
+    public static bool IsRectangleDown(this Rectangle thisRectangle, Rectangle platformRect, float collisionTolerance = 2f)
     {
-        var verticalTouch = Math.Abs(thisRectangle.Bottom - platformRect.Top) <= CollisionTolerance;
+        var verticalTouch = Math.Abs(thisRectangle.Bottom - platformRect.Top) <= collisionTolerance;
         var horizontalOverlap = thisRectangle.Right > platformRect.Left && thisRectangle.Left < platformRect.Right;
     
         return verticalTouch && horizontalOverlap;
     }
 
-    public static bool IsRectangleLeft(this Rectangle thisRectangle, Rectangle checkRectangle, float CollisionTolerance = 2f)
+    public static bool IsRectangleLeft(this Rectangle thisRectangle, Rectangle checkRectangle, float collisionTolerance = 2f)
     {
         var platformRect = checkRectangle;
-        var horizontalTouch = Math.Abs(platformRect.Right - thisRectangle.Left) <= CollisionTolerance;
-        var verticalOverlap = thisRectangle.Bottom > platformRect.Top + CollisionTolerance 
-                              && thisRectangle.Top < platformRect.Bottom - CollisionTolerance;
+        var horizontalTouch = Math.Abs(platformRect.Right - thisRectangle.Left) <= collisionTolerance;
+        var verticalOverlap = thisRectangle.Bottom > platformRect.Top + collisionTolerance 
+                              && thisRectangle.Top < platformRect.Bottom - collisionTolerance;
         
         return horizontalTouch && verticalOverlap;
     }
 
-    public static bool IsRectangleRight(this Rectangle thisRectangle, Rectangle checkRectangle, float CollisionTolerance = 2f)
+    public static bool IsRectangleRight(this Rectangle thisRectangle, Rectangle checkRectangle, float collisionTolerance = 2f)
     {
         var platformRect = checkRectangle;
-        var horizontalTouch = Math.Abs(platformRect.Left - thisRectangle.Right) <= CollisionTolerance;
-        var verticalOverlap = thisRectangle.Bottom > platformRect.Top + CollisionTolerance 
-                              && thisRectangle.Top < platformRect.Bottom - CollisionTolerance;
+        var horizontalTouch = Math.Abs(platformRect.Left - thisRectangle.Right) <= collisionTolerance;
+        var verticalOverlap = thisRectangle.Bottom > platformRect.Top + collisionTolerance 
+                              && thisRectangle.Top < platformRect.Bottom - collisionTolerance;
         
         return horizontalTouch && verticalOverlap;
     }
 
-    public static int GetDistToRectangleOver(this Rectangle thisRectangle, Rectangle checkRectangle, float CollisionTolerance = 2f)
+    public static int GetDistToRectangleOver(this Rectangle thisRectangle, Rectangle checkRectangle, float collisionTolerance = 2f)
     {
         var platformRect = checkRectangle;
         var horizontalTouch = thisRectangle.Right > checkRectangle.Left 

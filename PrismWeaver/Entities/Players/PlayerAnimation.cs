@@ -15,33 +15,15 @@ public class PlayerAnimation
     private Animation currentAnimation;
     private string currentState;
     private SpriteEffects effects;
-    
     public PlayerDirection PlayerDirection;
-
-    public static int FrameWidth { get; } = 128;
-    public static int FrameHeight { get; } = 128;
-    public static int RealFrameWidth { get; } = 52;
-    public static int RealFrameHeight { get; } = 70;
-    private Point frameSize;
-
-    private int countFrameIdle = 5;
-    private int countFrameRun = 6;
-    private int countFrameJump = 6;
-    private int countFrameDie = 8;
-
-    private float frameTimeIdle = 0.12f;
-    private float frameTimeRun = 0.08f;
-    private float frameTimeJump = 0.09f;
-    private float frameTimeDie = 0.1f;
     
-    public PlayerAnimation(ContentManager content, Point frameSize)
+    public PlayerAnimation(ContentManager content)
     {
         this.content = content;
-        this.frameSize = frameSize;
-        animations.Add("idle", CreateFrame("textures/Countess_Vampire/Idle", countFrameIdle, frameTimeIdle, true));
-        animations.Add("run", CreateFrame("textures/Countess_Vampire/Run", countFrameRun, frameTimeRun, true));
-        animations.Add("jump", CreateFrame("textures/Countess_Vampire/Jump", countFrameJump, frameTimeJump, false));
-        animations.Add("die", CreateFrame("textures/Countess_Vampire/Dead", countFrameDie, frameTimeDie, false));
+        animations.Add("idle", CreateFrame("textures/Countess_Vampire/Idle", Config.CountFrameIdle, Config.FrameTimeIdle, true));
+        animations.Add("run", CreateFrame("textures/Countess_Vampire/Run", Config.CountFrameRun, Config.FrameTimeRun, true));
+        animations.Add("jump", CreateFrame("textures/Countess_Vampire/Jump", Config.CountFrameJump, Config.FrameTimeJump, false));
+        animations.Add("die", CreateFrame("textures/Countess_Vampire/Dead", Config.CountFrameDie, Config.FrameTimeDie, false));
         
         currentState = "idle";
         currentAnimation = animations[currentState];
@@ -50,7 +32,7 @@ public class PlayerAnimation
     private Animation CreateFrame(string path, int countFrame, float frameTime, bool isLooping)
     {
         var texture = content.Load<Texture2D>(path);
-        return new Animation(texture, frameSize, countFrame, frameTime, isLooping);
+        return new Animation(texture, Config.FrameSize, countFrame, frameTime, isLooping);
     }
 
     public void Update(GameTime gameTime, Vector2 velocity, bool isGrounded, bool canMove)

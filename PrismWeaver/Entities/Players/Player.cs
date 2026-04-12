@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,15 +21,23 @@ public class Player : DynamicObject
     private double timer;
     private bool isCanJump = true;
 
-    public Player(GraphicsDeviceManager graphics, ContentManager content, Vector2 startPosition, int width, int height,
-        List<GameObject> gameObjects, float MaxVelocityX = 4)
-        : base(graphics, startPosition, width, height, gameObjects, MaxVelocityX)
+    public Player(
+        GraphicsDeviceManager graphics, 
+        ContentManager content, 
+        Vector2 startPosition, 
+        List<GameObject> gameObjects,
+        int width, 
+        int height,
+        float maxVelocityX = 4
+        ) : base(graphics, startPosition, width, height, gameObjects, maxVelocityX)
     {
-        playerAnimation = new PlayerAnimation(content, new Point(width, height));
+        playerAnimation = new PlayerAnimation(content);
+        
         var offset = new Vector2(
-            (PlayerAnimation.FrameWidth - PlayerAnimation.RealFrameWidth) / 2f,
-            PlayerAnimation.FrameHeight - PlayerAnimation.RealFrameHeight);
-        var realSize = new Point(PlayerAnimation.RealFrameWidth, PlayerAnimation.RealFrameHeight);
+            (Config.FrameWidth - Config.RealFrameWidth) / 2f,
+            Config.FrameHeight - Config.RealFrameHeight);
+        
+        var realSize = new Point(Config.RealFrameWidth, Config.RealFrameHeight);
         SetCollision(offset, realSize);
     }
 
@@ -42,7 +51,7 @@ public class Player : DynamicObject
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        var drawPosition = Position - collisionOffset;
+        var drawPosition = Position - CollisionOffset;
         playerAnimation.Draw(spriteBatch, drawPosition);
     }
 

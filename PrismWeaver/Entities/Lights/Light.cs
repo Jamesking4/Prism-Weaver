@@ -44,8 +44,8 @@ public class Light : GameObject
     public override void Update(GameTime gameTime)
     {
         CalculateNewWidthAndHeight();
-        collisionSize.X = Width;
-        collisionSize.Y = Height;
+        CollisionSize.X = Width;
+        CollisionSize.Y = Height;
     }
 
     public override void Draw(SpriteBatch spriteBatch)

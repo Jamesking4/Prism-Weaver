@@ -14,20 +14,20 @@ public abstract class GameObject
     public bool IsPushable { get; set; } = false;
     
     public Rectangle DrawRectangle => new(
-        (int)(Position.X - collisionOffset.X),
-        (int)(Position.Y - collisionOffset.Y),
+        (int)(Position.X - CollisionOffset.X),
+        (int)(Position.Y - CollisionOffset.Y),
         Width,
         Height
     );
 
-    protected Vector2 collisionOffset = Vector2.Zero;
-    protected Point collisionSize;
+    protected Vector2 CollisionOffset = Vector2.Zero;
+    protected Point CollisionSize;
     
     public Rectangle CollisionRectangle => new(
         (int)Position.X,
         (int)Position.Y,
-        collisionSize.X,
-        collisionSize.Y
+        CollisionSize.X,
+        CollisionSize.Y
     );
 
     protected GameObject(Vector2 startPosition, int width, int height, bool isColliding = true)
@@ -37,13 +37,13 @@ public abstract class GameObject
         Height = height;
         IsColliding = isColliding;
 
-        collisionSize = new Point(width, height);
+        CollisionSize = new Point(width, height);
     }
 
     protected void SetCollision(Vector2 collisionOffset, Point collisionSize)
     {
-        this.collisionOffset = collisionOffset;
-        this.collisionSize = collisionSize;
+        this.CollisionOffset = collisionOffset;
+        this.CollisionSize = collisionSize;
     }
 
     public virtual void Update(GameTime gameTime) { }
