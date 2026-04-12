@@ -8,15 +8,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1b13c6c-ec87-4061-baf0-4e36f9224824" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PrismWeaver/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PrismWeaver/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/Content/GlassBlock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/Content/GlassBlock.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PrismWeaver/Content/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/Content/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/Core/DynamicObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/Core/DynamicObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/Entities/Lights/Light.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/Entities/Lights/Light.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/Game1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/Game1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/Utilities/PlayerDirection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/Entities/Players/PlayerDirection.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.exe" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/bin/Debug/net9.0-windows/PrismWeaver.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.dll" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/PrismWeaver.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/PrismWeaver/obj/Debug/net9.0-windows/apphost.exe" afterDir="false" />
@@ -42,31 +43,47 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/Animation.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/Animation.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/Animation.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/Animation.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/Animation.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/Animation.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Content/Animation.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/Direction.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/Door.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/DynamicObject.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/GameObject.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/Gates.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/GlassBlock.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/Gravitation.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/Light.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/LightSourse.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/Platform.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/Player.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/PlayerAnimation.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/RecepientLight.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/RectangleExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/Window.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PrismWeaver/Content/textures/PlayerDirection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/Core/DynamicObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/Core/GameObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/Core/PushableBlock.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Exit/Door.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Exit/Gates.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Interactive/GlassBlock.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Interactive/RecepientLight.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Project/c#/Prism Weaver/PrismWeaver/PrismWeaver/Entities/Lights/Light.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Lights/LightSource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Platforms/Platform.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Players/Player.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Players/PlayerAnimation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/Entities/Players/PlayerDirection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Game1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/Physics/Gravitation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PrismWeaver/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/Utilities/Animation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/Utilities/Direction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PrismWeaver/Utilities/RectangleExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/76f1c92c01a744a4a3c64ca7874d1f01d5e00/18/28b0544c/Game.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ba03229b8197450d925e741b560ee852e8e920/13/a145374a/Double.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -141,6 +158,7 @@
       <workItem from="1775705372479" duration="77000" />
       <workItem from="1775714337920" duration="20072000" />
       <workItem from="1775805893463" duration="16550000" />
+      <workItem from="1775901271617" duration="15087000" />
     </task>
     <servers />
   </component>

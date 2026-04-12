@@ -12,13 +12,11 @@ public abstract class PushableBlock : DynamicObject
 {
     public Color Color { get; private set; }
     private Texture2D texture;
-    
-    private const float PushForce = 0.8f;
-    private const float Friction = 0.9f;
+    private const float Friction = 0.92f;
     private const float StopThreshold = 0.05f;
 
-    protected PushableBlock(GraphicsDeviceManager graphics, Vector2 startPosition, int width, int height, 
-        List<GameObject> gameObjects, float maxVelocityX = 3f) 
+    protected PushableBlock(GraphicsDeviceManager graphics, Vector2 startPosition, int width, int height,
+        List<GameObject> gameObjects, float maxVelocityX = 2f)
         : base(graphics, startPosition, width, height, gameObjects, maxVelocityX)
     {
         IsPushable = true;
@@ -32,7 +30,6 @@ public abstract class PushableBlock : DynamicObject
 
     public override void Update(GameTime gameTime)
     {
-        ApplyPlayerForce();
         ApplyFriction();
         BaseMove();
     }
@@ -42,23 +39,12 @@ public abstract class PushableBlock : DynamicObject
         spriteBatch.Draw(texture, DrawRectangle, Color);
     }
 
-    private void ApplyPlayerForce()
-    {
-        var player = gameObjects.OfType<Player>().FirstOrDefault();
-        if (player == null) return;
-
-        if (CollisionRectangle.IsRectangleRight(player.CollisionRectangle))
-            Velocity.X -= PushForce;
-        else if (CollisionRectangle.IsRectangleLeft(player.CollisionRectangle))
-            Velocity.X += PushForce;
-    }
-    
     private void ApplyFriction()
     {
-        var player = gameObjects.OfType<Player>().FirstOrDefault();
-        var isPlayerPushing = player != null && 
-                              (CollisionRectangle.IsRectangleRight(player.CollisionRectangle) ||
-                               CollisionRectangle.IsRectangleLeft(player.CollisionRectangle));
+        var player = GameObjects.OfType<Player>().FirstOrDefault();
+        var isPlayerPushing = player != null &&
+                               (CollisionRectangle.IsRectangleLeft(player.CollisionRectangle) ||
+                                CollisionRectangle.IsRectangleRight(player.CollisionRectangle));
 
         if (!isPlayerPushing)
         {

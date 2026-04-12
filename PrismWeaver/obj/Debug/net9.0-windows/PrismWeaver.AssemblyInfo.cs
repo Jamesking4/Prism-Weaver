@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PrismWeaver")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a84d4e06f6097d0da9f29b0c6d49fb6ee0367eb9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+80db69bc8bd206477f760ccf4df59d047bb2040c")]
 [assembly: System.Reflection.AssemblyProductAttribute("PrismWeaver")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PrismWeaver")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

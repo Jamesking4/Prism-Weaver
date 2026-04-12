@@ -47,14 +47,25 @@ public class Player : DynamicObject
 
     public void MoveRight()
     {
+        if (!CanMoveRight)
+        {
+            if (Velocity.X > 0) 
+                Velocity.X = 0;
+            return;
+        }
         Velocity.X += DiffVelocityX;
     }
 
     public void MoveLeft()
     {
+        if (!CanMoveLeft)
+        {
+            if (Velocity.X < 0) 
+                Velocity.X = 0;
+            return;
+        }
         Velocity.X -= DiffVelocityX;
     }
-
     public void Jump()
     {
         if (!IsGrounded || !isCanJump)
@@ -62,7 +73,7 @@ public class Player : DynamicObject
 
         var distToPlatformOver = 0;
         var minDistToPlatformOver = int.MaxValue;
-        foreach (var obj in gameObjects)
+        foreach (var obj in GameObjects)
         {
             if (obj == this || !obj.IsColliding)
                 continue;

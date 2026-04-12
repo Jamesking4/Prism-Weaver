@@ -61,7 +61,7 @@ public class PlayerAnimation
         
         if (!isGrounded || velocity.Y != 0)
             newState = "jump";
-        else if (Math.Abs(velocity.X) > 0.6f)
+        else if (Math.Abs(velocity.X) > 0.3f)
             newState = "run";
         else
             newState = "idle";

@@ -1,4 +1,4 @@
-﻿namespace PrismWeaver.Utilities;
+﻿namespace PrismWeaver.Entities.Players;
 
 public enum PlayerDirection
 {

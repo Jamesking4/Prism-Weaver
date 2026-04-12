@@ -56,7 +56,7 @@ public class Game1 : Game
         var pixelTexture2 = new Texture2D(GraphicsDevice, 1, 1);
         var pixelTexture3 = new Texture2D(GraphicsDevice, 1, 1);
         pixelTexture.SetData([Color.White]);
-        pixelTexture3.SetData([Color.White]);
+        pixelTexture3.SetData([Color.White * 0.3f]);
         
         for (var i = 0; i < 8; i++)
         {
@@ -65,14 +65,19 @@ public class Game1 : Game
         }
         
         var lightSource = new LightSource(new Vector2(windowWidth / 2f, windowHeight - 160),30, 30);
-        lightSource.Initialize(graphics, pixelTexture2, Color.Red, Direction.Right, pixelTexture, gameObjects);
+        lightSource.Initialize(graphics, pixelTexture2, Color.Red, Direction.Left, pixelTexture, gameObjects);
         gameObjects.Add(lightSource);
         gameObjects.Add(lightSource.GetLight());
 
-        var glassBlock = new GlassBlock(graphics, new Vector2(400, windowHeight - 180), 
+        var glassBlock = new GlassBlock(graphics, new Vector2(250, windowHeight - 180), 
             40, 40, gameObjects, 2f);
         glassBlock.Initialize(Color.White, pixelTexture3);
         gameObjects.Add(glassBlock);
+        
+        var glassBlock2 = new GlassBlock(graphics, new Vector2(420, windowHeight - 180), 
+            40, 40, gameObjects, 2f);
+        glassBlock2.Initialize(Color.White, pixelTexture3);
+        gameObjects.Add(glassBlock2);
 
         MediaPlayer.IsRepeating = true;
         MediaPlayer.Volume = 1f;
@@ -119,11 +124,11 @@ public class Game1 : Game
 
     private void ControlPlayer(KeyboardState keyboard)
     {
-        if (keyboard.IsKeyDown(Keys.D))
-            player.MoveRight();
-        
         if (keyboard.IsKeyDown(Keys.A))
             player.MoveLeft();
+        
+        if (keyboard.IsKeyDown(Keys.D))
+            player.MoveRight();
         
         if (keyboard.IsKeyDown(Keys.Space))
             player.Jump();

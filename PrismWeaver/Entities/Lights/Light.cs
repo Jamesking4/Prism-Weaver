@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using PrismWeaver.Core;
+using PrismWeaver.Entities.Interactive;
 using PrismWeaver.Utilities;
 
 namespace PrismWeaver.Entities.Lights;
@@ -61,7 +62,7 @@ public class Light : GameObject
 
         foreach (var obj in gameObjects)
         {
-            if (obj is Light or LightSource) continue;
+            if (obj is Light or LightSource or GlassBlock) continue;
             var objRect = obj.CollisionRectangle;
 
             var distance = float.MaxValue;
