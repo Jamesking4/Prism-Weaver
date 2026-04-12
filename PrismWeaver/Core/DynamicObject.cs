@@ -44,12 +44,102 @@ public abstract class DynamicObject : GameObject
         ResolveVerticalCollisions();
         
         if (Velocity.X != 0)
+        {
+            if (this is Player)
+                TryShiftStandingBlock(Velocity.X);
+            
             TryMoveHorizontal(Velocity.X);
+        }
         
         (Position, Velocity) = ApplyWindowBoundary(CollisionRectangle, Velocity);
 
         if (!CanMoveLeft && Velocity.X < 0) Velocity.X = 0;
         if (!CanMoveRight && Velocity.X > 0) Velocity.X = 0;
+    }
+
+    private void TryShiftStandingBlock(float moveDirection)
+    {
+        if (Math.Abs(moveDirection) < 0.01f) return;
+        
+        var blocksUnder = FindBlocksUnderPlayer();
+        if (blocksUnder.Count == 0) return;
+        
+        var playerWidth = CollisionSize.X;
+        var threshold = 1.5f * playerWidth;
+        
+        if (blocksUnder.Count == 1)
+        {
+            var block = blocksUnder[0];
+
+            var minDistLeft = GetMinDistanceToObstacle(block, -1);
+            var minDistRight = GetMinDistanceToObstacle(block, 1);
+            var minDist = Math.Min(minDistLeft, minDistRight);
+            
+            if (minDist < threshold)
+            {
+                var step = Math.Sign(moveDirection) * Math.Min(Math.Abs(moveDirection), MaxPushStep);
+                if (TryPushBlockChain(block, step))
+                {
+                    Position = new Vector2(Position.X + step, Position.Y);
+                }
+            }
+        }
+    }
+
+    private List<DynamicObject> FindBlocksUnderPlayer()
+    {
+        var result = new List<DynamicObject>();
+        var playerRect = CollisionRectangle;
+        var collisions = GetRectanglesWithCollision();
+        
+        foreach (var rect in collisions)
+        {
+            var otherObj = GameObjects.FirstOrDefault(obj => obj.CollisionRectangle == rect);
+            if (otherObj == null || !otherObj.IsPushable)
+                continue;
+            if (otherObj is not DynamicObject block)
+                continue;
+            
+            var isOnTop = Math.Abs(playerRect.Bottom - rect.Top) <= 2 &&
+                           playerRect.Right > rect.Left && playerRect.Left < rect.Right;
+            if (isOnTop)
+                result.Add(block);
+        }
+        return result;
+    }
+
+    private float GetMinDistanceToObstacle(DynamicObject block, int direction)
+    {
+        var distance = 0f;
+        var maxDistance = 10000f;
+        
+        for (var d = block.CollisionSize.X / 2f; d <= maxDistance; d += 1f)
+        {
+            var checkX = block.Position.X + (direction == -1 ? -d : d + block.CollisionSize.X);
+            var checkRect = new Rectangle((int)checkX, (int)block.Position.Y, 1, block.CollisionSize.Y);
+            
+            if (direction == -1 && checkX < 0)
+                return d;
+            if (direction == 1 && checkX + 1 > graphics.GraphicsDevice.Viewport.Width)
+                return d;
+            
+            var hit = false;
+            foreach (var other in GameObjects)
+            {
+                if (other == block)
+                    continue;
+                if (!other.IsColliding)
+                    continue;
+                if (checkRect.Intersects(other.CollisionRectangle))
+                {
+                    hit = true;
+                    break;
+                }
+            }
+            if (hit)
+                return d;
+        }
+        return maxDistance;
     }
 
     private void TryMoveHorizontal(float deltaX)
@@ -88,9 +178,11 @@ public abstract class DynamicObject : GameObject
 
             return HandlePushableCollision(rect, block, playerIsLeft, newRect);
         }
-
-        HandleNonPushableCollision(rect, newRect);
-        return true;
+        else
+        {
+            HandleNonPushableCollision(rect, newRect);
+            return true;
+        }
     }
 
     private bool HandlePushableCollision(Rectangle rect, DynamicObject block, bool playerIsLeft, Rectangle newRect)
@@ -162,6 +254,7 @@ public abstract class DynamicObject : GameObject
 
             var otherObj = GameObjects.FirstOrDefault(obj => obj.CollisionRectangle == rect);
             
+            // Блоки не опираются на игрока
             if (this is not Player && otherObj is Player) continue;
 
             if (TryHandlePlayerLandingOnPushable(rect, otherObj))

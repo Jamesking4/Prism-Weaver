@@ -163,7 +163,7 @@ public class Game1 : Game
             player.MoveLeft();
         if (keyboard.IsKeyDown(Keys.D))
             player.MoveRight();
-        if (keyboard.IsKeyDown(Keys.Space) && !previousKeyboardState.IsKeyDown(Keys.Space))
+        if (keyboard.IsKeyDown(Keys.Space))
             player.Jump();
 
         if (!keyboard.IsKeyDown(Keys.A) && !keyboard.IsKeyDown(Keys.D))
