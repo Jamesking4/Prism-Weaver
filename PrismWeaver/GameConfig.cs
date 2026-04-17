@@ -22,7 +22,7 @@ public static class GameConfig
     
     public const int LightSourceSize = 30;
     public static readonly Vector2 LightSourceOffsetFromBottom = new(0, 160);
-    public static readonly Color LightSourceColor = Color.Red;
+    public static readonly Color LightSourceColor = Color.White;
     
     public static readonly Vector2 PlayerStartPosition = new(50, 800);
     

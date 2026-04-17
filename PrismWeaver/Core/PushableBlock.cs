@@ -10,7 +10,7 @@ namespace PrismWeaver.Core;
 
 public abstract class PushableBlock : DynamicObject
 {
-    public Color Color { get; private set; }
+    public Color ColorCurrent { get; private set; }
     private Texture2D texture;
     private const float Friction = 0.92f;
     private const float StopThreshold = 0.05f;
@@ -22,9 +22,9 @@ public abstract class PushableBlock : DynamicObject
         IsPushable = true;
     }
 
-    public void Initialize(Color color, Texture2D texture)
+    public virtual void Initialize(Color color, Texture2D texture)
     {
-        Color = color;
+        ColorCurrent = color;
         this.texture = texture;
     }
 
@@ -36,7 +36,7 @@ public abstract class PushableBlock : DynamicObject
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(texture, DrawRectangle, Color);
+        spriteBatch.Draw(texture, DrawRectangle, ColorCurrent);
     }
 
     private void ApplyFriction()

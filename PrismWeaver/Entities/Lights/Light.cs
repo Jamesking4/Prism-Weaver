@@ -13,8 +13,8 @@ public class Light : GameObject
     private Color color;
     private Direction direction;
     private Texture2D texture;
-    private bool enabled;
     private List<GameObject> gameObjects;
+    private Stack<GameObject> newObjects;
     private GraphicsDeviceManager graphics;
     private LightSource source;
     private int lightWidth;
@@ -28,13 +28,13 @@ public class Light : GameObject
         this.lightWidth = lightWidth;
     }
 
-    public void Initialize(GraphicsDeviceManager graphics, Color color, bool isWork, Direction direction, 
-        Texture2D texture, List<GameObject> gameObjects)
+    public void Initialize(GraphicsDeviceManager graphics, Color color, Direction direction, 
+        Texture2D texture, List<GameObject> gameObjects, Stack<GameObject> newObjects)
     {
         this.color = color;
         this.direction = direction;
-        enabled = isWork;
         this.gameObjects = gameObjects;
+        this.newObjects = newObjects;
         this.graphics = graphics;
         
         this.texture = texture;
@@ -50,7 +50,7 @@ public class Light : GameObject
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        if (enabled)
+        if (source.IsWork())
             spriteBatch.Draw(texture, DrawRectangle, color);
     }
 
@@ -59,14 +59,33 @@ public class Light : GameObject
         var sourceRect = source.CollisionRectangle;
         var viewport = graphics.GraphicsDevice.Viewport;
         var minDistance = float.MaxValue;
+        var lightSources = new List<LightSource>();
 
         foreach (var obj in gameObjects)
         {
             if (obj is Light or LightSource or GlassBlock) continue;
-            var objRect = obj.CollisionRectangle;
+            if (obj is OpticalBlock opticalBlock && source is LightSource src && src.ParentOpticalBlock == opticalBlock)
+                continue;
 
+            var objRect = obj.CollisionRectangle;
             var distance = float.MaxValue;
 
+            if (obj is OpticalBlock)
+            {
+                var block = obj as OpticalBlock;
+                var intersect = Rectangle.Intersect(obj.CollisionRectangle, CollisionRectangle);
+                if (obj.CollisionRectangle.Intersects(CollisionRectangle))
+                    block.AddNewLight(this, direction, color, newObjects, intersect, lightWidth);
+                else
+                    block.UpdateStatus(this, false, intersect, direction);
+            }
+
+            if (obj is Target target)
+            {
+                if (target.CollisionRectangle.Intersects(CollisionRectangle) && target.ColorTarget == color)
+                    target.AddBeam();
+            }
+            
             switch (direction)
             {
                 case Direction.Up:
@@ -146,5 +165,12 @@ public class Light : GameObject
                 Position = new Vector2(sourceRect.Right, sourceRect.Center.Y - lightWidth / 2f);
                 break;
         }
+        
+        foreach (var lightSource in lightSources) 
+            gameObjects.Add(lightSource);
+        
+        foreach (var obj in gameObjects)
+            if (obj is Target target)
+                target.ApplyActivation();
     }
 }

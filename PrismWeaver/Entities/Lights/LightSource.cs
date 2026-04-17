@@ -8,6 +8,7 @@ namespace PrismWeaver.Entities.Lights;
 
 public class LightSource : GameObject
 {
+    public OpticalBlock ParentOpticalBlock { get; set; }
     private Direction direction;
     private bool isWork = true;
     private Texture2D texture;
@@ -19,19 +20,24 @@ public class LightSource : GameObject
     {
     }
 
-    public void Initialize(GraphicsDeviceManager graphics, Texture2D texture, Color color, Direction direction, Texture2D textureTemp, List<GameObject> gameObjects)
+    public void Initialize(GraphicsDeviceManager graphics, Texture2D texture, Color color, Direction direction, 
+        Texture2D textureTemp, List<GameObject> gameObjects, Stack<GameObject> newObjects)
     {
         this.texture = textureTemp;
         this.direction = direction;
         this.color = color;
         
         light = new Light(this ,lightWidth);
-        light.Initialize(graphics, color, isWork, direction, texture, gameObjects);
+        light.Initialize(graphics, color, direction, texture, gameObjects, newObjects);
     }
 
     public override void Update(GameTime gameTime)
     {
-        
+    }
+
+    public void Move(Vector2 position)
+    {
+        Position = position;
     }
 
     public override void Draw(SpriteBatch spriteBatch)
@@ -48,4 +54,6 @@ public class LightSource : GameObject
     {
         this.isWork = isWork;
     }
+    
+    public bool IsWork() =>  this.isWork;
 }
